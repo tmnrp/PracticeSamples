@@ -3,19 +3,18 @@ import ReactDOM from 'react-dom';
 import SeasonDisplay from './SeasonDisplay';
 
 class App extends React.Component {
+    state = { isLocationAllowed: false, latitude: null, errMsg: '' };
 
-    constructor(props) {
-        super(props);
-        this.state = { isLocationAllowed: false, latitude: null, errMsg: '' };
-
+    componentDidMount() {
+        console.log('componentDidMount');
         window.navigator.geolocation.getCurrentPosition(
-            (position) => {
+            position => {
                 this.setState({
                     isLocationAllowed: true,
                     latitude: position.coords.latitude
                 });
             },
-            (msg) => {
+            msg => {
                 console.log(msg);
                 this.setState({
                     errMsg: msg.message
@@ -26,10 +25,6 @@ class App extends React.Component {
 
     componentWillMount() {
         console.log('componentWillMount');
-    }
-
-    componentDidMount() {
-        console.log('componentDidMount');
     }
 
     componentWillUnmount() {
@@ -56,18 +51,18 @@ class App extends React.Component {
         console.log('render');
         var text, value;
         if (this.state.latitude && !this.state.errMsg) {
-            text = 'Latitude';
-            value = this.state.latitude;
+            return <div >
+                <SeasonDisplay lalitutde={this.state.latitude}/>
+            </div>;
         } else if (!this.state.latitude && this.state.errMsg) {
-            text = 'Error';
-            value = this.state.errMsg;
+            return <div >
+                Error : {this.state.errMsg}
+            </div>;
         } else {
-            text = 'Loading';
-            value = '...';
+            return <div >
+                Loading : ...
+            </div>;
         }
-        return <div >
-            {text} : {value}
-        </div>;
     }
 }
 
