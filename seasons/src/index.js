@@ -6,13 +6,13 @@ class App extends React.Component {
 
     constructor(props) {
         super(props);
-        this.state = { isLocationAllowed: false, latitude: null, errMsg: ''};
+        this.state = { isLocationAllowed: false, latitude: null, errMsg: '' };
 
         window.navigator.geolocation.getCurrentPosition(
             (position) => {
                 this.setState({
                     isLocationAllowed: true,
-                    latitude : position.coords.latitude
+                    latitude: position.coords.latitude
                 });
             },
             (msg) => {
@@ -24,18 +24,50 @@ class App extends React.Component {
         );
     }
 
+    componentWillMount() {
+        console.log('componentWillMount');
+    }
+
+    componentDidMount() {
+        console.log('componentDidMount');
+    }
+
+    componentWillUnmount() {
+        console.log('componentWillUnmount');
+    }
+
+    componentDidUpdate() {
+        console.log('componentDidUpdate');
+    }
+
+    componentWillUpdate() {
+        console.log('componentWillUpdate');
+    }
+
+    componentWillReceiveProps() {
+        console.log('componentWillReceiveProps');
+    }
+
+    componentDidCatch() {
+        console.log('componentDidCatch');
+    }
+
     render() {
-        if (this.state.isLocationAllowed) {
-            return (
-                <div >
-                    Hello World : you are in {this.state.latitude}.
-                </div>
-            );
-        }else {
-            return <div >
-                Sorry : {this.state.errMsg}
-            </div>
+        console.log('render');
+        var text, value;
+        if (this.state.latitude && !this.state.errMsg) {
+            text = 'Latitude';
+            value = this.state.latitude;
+        } else if (!this.state.latitude && this.state.errMsg) {
+            text = 'Error';
+            value = this.state.errMsg;
+        } else {
+            text = 'Loading';
+            value = '...';
         }
+        return <div >
+            {text} : {value}
+        </div>;
     }
 }
 
