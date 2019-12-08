@@ -1,3 +1,4 @@
+import './SeasonDisplay.css';
 import React from 'react';
 import ReactDOM from 'react-dom';
 import SeasonDisplay from './SeasonDisplay';
@@ -48,9 +49,7 @@ class App extends React.Component {
         console.log('componentDidCatch');
     }
 
-    render() {
-        console.log('render');
-        var text, value;
+    getRenderContent = () => {
         if (this.state.latitude && !this.state.errMsg) {
             return <div >
                 <SeasonDisplay lalitutde={this.state.latitude} />
@@ -60,8 +59,16 @@ class App extends React.Component {
                 Error : {this.state.errMsg}
             </div>;
         } else {
-            return <Spinner message="Please accept location request..."/>;
+            return <Spinner message="Please accept location request..." />;
         }
+    }
+
+    render() {
+        return (
+            <div className="border red">
+                {this.getRenderContent()}
+            </div>
+        );
     }
 }
 
