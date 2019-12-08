@@ -6,26 +6,36 @@ class App extends React.Component {
 
     constructor(props) {
         super(props);
-        this.state = { latitude: 10 };
+        this.state = { isLocationAllowed: false, latitude: null, errMsg: ''};
 
         window.navigator.geolocation.getCurrentPosition(
             (position) => {
-                console.log(position);
-                this.setState({ latitude: position.coords.latitude });
-
+                this.setState({
+                    isLocationAllowed: true,
+                    latitude : position.coords.latitude
+                });
             },
-            (errorMsg) => {
-                console.log(errorMsg);
+            (msg) => {
+                console.log(msg);
+                this.setState({
+                    errMsg: msg.message
+                });
             }
         );
     }
 
     render() {
-        return (
-            <div >
-                Hello World : you are in {this.state.latitude}.
+        if (this.state.isLocationAllowed) {
+            return (
+                <div >
+                    Hello World : you are in {this.state.latitude}.
+                </div>
+            );
+        }else {
+            return <div >
+                Sorry : {this.state.errMsg}
             </div>
-        );
+        }
     }
 }
 
