@@ -1,17 +1,15 @@
 import React from 'react';
-import axios from 'axios';
+import Axios from '../api/Axios';
 import SearchBar from './SearchBar';
+import ImageList from './ImageList';
 
-class App extends React.Component {
-    state = { images: [] };
+class PicsApp extends React.Component {
+    state = { images: [], imagesLength: 0 };
 
     onSearchBarSubmit = (searchKey) => {
-        axios.get('https://api.unsplash.com/search/photos', {
+        Axios.get('/search/photos', {
             params: {
                 query: searchKey
-            },
-            headers: {
-                Authorization: 'Client-ID 698b5409d7c806c6982ec216e65d068f5851b04d470fc6729457ae908b78bb18'
             }
         }).then((response) => {
             var results = response.data.results;
@@ -26,9 +24,10 @@ class App extends React.Component {
             <div className='ui container' style={{ marginTop: '10px' }}>
                 <SearchBar onSubmit={this.onSearchBarSubmit} />
                 <label >Found : {this.state.imagesLength} images.</label>
+                <ImageList images={this.state.images} imagesLength={this.state.imagesLength} />
             </div>
         );
     };
 }
 
-export default App;
+export default PicsApp;
