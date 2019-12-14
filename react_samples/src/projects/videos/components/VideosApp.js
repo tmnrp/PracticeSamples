@@ -2,10 +2,11 @@ import React from 'react';
 import VideosSearchBar from './VideosSearchBar';
 import ApiYoutubeAxios from '../api/ApiYoutubeAxios';
 import VideoList from './VideoList';
+import VideoDetail from './VideoDetail';
 
 class VideosApp extends React.Component {
 
-    state = { searchKey: '', videos: [] };
+    state = { searchKey: '', videos: [], selectedVideo: null };
 
     onSearchBarSubmit = (text) => {
         console.log(text);
@@ -18,15 +19,31 @@ class VideosApp extends React.Component {
                 type: 'video'
             }
         }).then((response) => {
-            this.setState({videos: response.data.items});
+            this.setState({ videos: response.data.items });
         });
+    }
+
+    onVideoClick = (video) => {
+        this.setState({ selectedVideo: video });
     }
 
     render() {
         return (
             <div className='ui container' style={{ marginTop: '10px' }}>
                 <VideosSearchBar onSearchBarSubmit={this.onSearchBarSubmit} />
-                <VideoList videos={this.state.videos} />
+                <div className="ui grid">
+                    <div className="ui row">
+                        <div className="eleven wide column">
+                            <VideoDetail video={this.state.selectedVideo} />
+                        </div>
+                        <div className="five wide column">
+                            <VideoList videos={this.state.videos}
+                                onVideoClick={this.onVideoClick}
+                                selectedVideo={this.state.selectedVideo}
+                            />
+                        </div>
+                    </div>
+                </div>
             </div>
         );
     }
