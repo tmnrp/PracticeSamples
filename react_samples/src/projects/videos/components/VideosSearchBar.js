@@ -24,8 +24,6 @@ class VideosSearchBar extends React.Component {
                         value={this.state.searchKey}
                         onChange={this.onSearchBarTextChange}
                     />
-                    <button className="ui button icon">
-                    </button>
                 </div>
             </form>
         </div>);

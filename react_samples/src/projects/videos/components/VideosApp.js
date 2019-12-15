@@ -8,6 +8,10 @@ class VideosApp extends React.Component {
 
     state = { searchKey: '', videos: [], selectedVideo: null };
 
+    componentDidMount(){
+        this.onSearchBarSubmit('cats');
+    }
+
     onSearchBarSubmit = (text) => {
         console.log(text);
         ApiYoutubeAxios.get('/search', {
@@ -19,7 +23,10 @@ class VideosApp extends React.Component {
                 type: 'video'
             }
         }).then((response) => {
-            this.setState({ videos: response.data.items });
+            this.setState({
+                videos: response.data.items,
+                selectedVideo: response.data.items[0]
+            });
         });
     }
 
