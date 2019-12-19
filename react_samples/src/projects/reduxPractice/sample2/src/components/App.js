@@ -1,37 +1,51 @@
 import React from 'react';
 import { connect } from 'react-redux';
-import { activateGodMode, deactivateGodMode } from './_redux';
 
-export class App extends React.Component {
+class App extends React.Component {
+    /*state = { count: 0 };
+
+    up = () => {
+        this.setState({
+            count: ++this.state.count
+        });
+    };
+
+    down = () => {
+        this.setState({
+            count: --this.state.count
+        });
+    };*/
 
     render() {
-        debugger;
-        return <div >
-            <div ><h1 >{this.props.greetText || 'Hello World'}</h1></div>
-            <button
-                onClick={() => { this.props.activateGodMode('Activated god mode') }}
-            >
-                Exit me!!!
-            </button>
-
-            <button
-                onClick={() => { this.props.deactivateGodMode('DEactivated god mode') }}
-            >
-                Activate me!!!
-            </button>
-        </div>
+        return (<div >
+            {this.props.count}
+            <div >
+                <button onClick={this.props.up}>UP</button>
+                <button onClick={this.props.down}>DOWN</button>
+            </div>
+        </div>);
     };
 }
 
 const mapStateToProps = (state) => {
-    return { greetText: state.greetText }
+    return {
+        count: state.count
+    };
 };
 
-const mapDispatchToProps = {
-    activateGodMode: activateGodMode,
-    deactivateGodMode: deactivateGodMode
+const mapDispatchToProps = (dispatch) => {
+    return {
+        up: () => {
+            dispatch({
+                type: 'UP'
+            })
+        },
+        down: () => {
+            dispatch({
+                type: 'DOWN'
+            })
+        }
+    }
 };
 
-const AppContainer = connect(mapStateToProps, mapDispatchToProps)(App);
-
-export default AppContainer;
+export default connect(mapStateToProps, mapDispatchToProps)(App);
