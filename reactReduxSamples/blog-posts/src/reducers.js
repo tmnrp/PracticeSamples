@@ -7,6 +7,14 @@ const postReducers = (posts = [], action) => {
     return posts;
 };
 
+const usersReducers = (users = [], action) => {
+    if (action.type === 'GET_USERS') {
+        return [...users, action.payload];
+    }
+    return users;
+};
+
 export default combineReducers({
+    users: usersReducers,
     posts: postReducers
 });
