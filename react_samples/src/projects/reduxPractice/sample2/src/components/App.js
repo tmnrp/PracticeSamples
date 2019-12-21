@@ -18,10 +18,10 @@ class App extends React.Component {
 
     render() {
         return (<div >
-            {this.props.count}
+            Count: {this.props.count}
             <div >
-                <button onClick={this.props.up}>UP</button>
-                <button onClick={this.props.down}>DOWN</button>
+                <button onClick={this.props.increamentBy1}>UP</button>
+                <button onClick={this.props.decrementBy1}>DOWN</button>
             </div>
         </div>);
     };
@@ -35,12 +35,12 @@ const mapStateToProps = (state) => {
 
 const mapDispatchToProps = (dispatch) => {
     return {
-        up: () => {
+        increamentBy1: () => {
             dispatch({
                 type: 'UP'
             })
         },
-        down: () => {
+        decrementBy1: () => {
             dispatch({
                 type: 'DOWN'
             })
