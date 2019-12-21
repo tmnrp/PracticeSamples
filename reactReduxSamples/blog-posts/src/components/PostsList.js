@@ -1,8 +1,7 @@
 import React from 'react';
 import { connect } from 'react-redux';
 
-import { setPosts } from '../actions';
-import { jsonPlaceHolderAxios } from '../api';
+import { fetchPosts, setPosts } from '../actions';
 
 import PostDetails from './PostDetails';
 
@@ -10,9 +9,7 @@ import PostDetails from './PostDetails';
 class PostsList extends React.Component {
 
     componentDidMount = () => {
-        jsonPlaceHolderAxios.get('/posts', {}).then((response) => {
-            this.props.setPosts(response.data);
-        });
+        this.props.fetchPosts();
     };
 
     render() {
@@ -40,7 +37,7 @@ const mapStateToProps = (state) => {
 
 const mapActionToProps = () => {
     return {
-        setPosts: setPosts
+        fetchPosts: fetchPosts
     };
 };
 

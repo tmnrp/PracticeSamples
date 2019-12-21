@@ -1,7 +1,7 @@
 import { combineReducers } from 'redux';
 
-const setPostsReducer = (posts = [], action) => {
-    if (action.type === 'SET_POSTS') {
+const postsReducer = (posts = [], action) => {
+    if (action.type === 'FETCH_POSTS') {
         return action.payload;
     }
     return posts;
@@ -9,5 +9,5 @@ const setPostsReducer = (posts = [], action) => {
 
 export default combineReducers({
     // set all posts
-    posts: setPostsReducer
+    posts: postsReducer
 });
