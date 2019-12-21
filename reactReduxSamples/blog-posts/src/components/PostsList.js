@@ -29,7 +29,8 @@ class PostsList extends React.Component {
 
 const mapStateToProps = (state) => {
     return {
-        posts: state.posts
+        posts: state.posts,
+        uniqueUsers: state.uniqueUsers
     };
 };
 const mapActionToProps = () => {

@@ -23,3 +23,10 @@ export const getUsers = (userId) => {
         });
     };
 };
+
+export const updateUniqueUsers = (userId) => {
+    return {
+        type: 'UPDATE_UNIQUE_USERS',
+        payload: userId
+    };
+};

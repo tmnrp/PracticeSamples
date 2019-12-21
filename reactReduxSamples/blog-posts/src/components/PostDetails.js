@@ -9,14 +9,13 @@ class PostDetails extends React.Component {
     };
 
     render() {
-        const user = this.props.users.find((user) => {
-            return user.id === this.props.post.userId;
-        });
-        const userName = user ? user.name : 'Loading...';
+        if (!this.props.user) {
+            return null;
+        }
         return (
             <div className="ui segment">
                 <div >User ID: {this.props.post.userId}</div>
-                <div >User Name: {userName}</div>
+                <div >User Name: {this.props.user.name}</div>
                 <div >Title: {this.props.post.title}</div>
                 <div >Content: {this.props.post.body}</div>
             </div>
@@ -24,9 +23,13 @@ class PostDetails extends React.Component {
     };
 }
 
-const mapStateToProps = (state) => {
+const mapStateToProps = (state, ownProps) => {
+    const user = state.users.find((user) => {
+        return user.id === ownProps.post.userId;
+    });
     return {
-        users: state.users
+        users: state.users,
+        user: user
     };
 };
 
