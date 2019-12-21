@@ -1,6 +1,6 @@
 import { combineReducers } from 'redux';
 
-const postsReducer = (posts = [], action) => {
+const postReducers = (posts = [], action) => {
     if (action.type === 'FETCH_POSTS') {
         return action.payload;
     }
@@ -8,6 +8,5 @@ const postsReducer = (posts = [], action) => {
 };
 
 export default combineReducers({
-    // set all posts
-    posts: postsReducer
+    posts: postReducers
 });

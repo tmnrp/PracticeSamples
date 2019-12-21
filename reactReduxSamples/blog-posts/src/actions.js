@@ -1,8 +1,7 @@
 import { jsonPlaceHolderAxios } from './api';
 
-// fetchPosts
-export const fetchPosts = (posts) => {
-    return function (dispatch, getState) {
+export const fetchPosts = () => {
+    return (dispatch, getState) => {
         const response = jsonPlaceHolderAxios.get('/posts');
         response.then((response) => {
             dispatch({
@@ -10,6 +9,5 @@ export const fetchPosts = (posts) => {
                 payload: response.data
             });
         });
-
     };
 };
