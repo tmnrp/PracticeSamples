@@ -4,7 +4,6 @@ import { selectSong } from '../actions';
 
 class SongsList extends React.Component {
     render() {
-        console.log(this.props);
         return (
             <div >
                 {this.props.getSongsList.map((song) => {
@@ -23,8 +22,10 @@ class SongsList extends React.Component {
 }
 
 const mapStateToProps = (state) => {
-    console.log('state: ', state);
-    return state;
+    return {
+        getSongsList: state.getSongsList,
+        selectedSong: state.selectedSong
+    };
 };
 
 const mapActionToProps = () => {
@@ -33,6 +34,4 @@ const mapActionToProps = () => {
     };
 };
 
-export default connect(mapStateToProps, {
-    selectSong: selectSong
-})(SongsList);
+export default connect(mapStateToProps, mapActionToProps())(SongsList);
