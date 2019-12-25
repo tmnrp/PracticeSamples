@@ -11,7 +11,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import com.tmnrp.moviesdb.categories.entity.Categories;
 
 @Controller
-@RequestMapping(value = "/category")
+@RequestMapping(value = "/categories")
 public class CategoriesController {
 
 	@CrossOrigin
