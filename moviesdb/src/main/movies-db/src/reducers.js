@@ -7,6 +7,14 @@ const moviesDataReducer = (moviesData = [], action) => {
     return moviesData;
 };
 
+const categoriesDataReducer = (categoriesData = [], action) => {
+    if (action.type === 'SET_CATEGORIES_DATA') {
+        return action.payload;
+    }
+    return categoriesData;
+};
+
 export default combineReducers({
-    moviesData: moviesDataReducer
+    moviesData: moviesDataReducer,
+    categoriesData: categoriesDataReducer
 });

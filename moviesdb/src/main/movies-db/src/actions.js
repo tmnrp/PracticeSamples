@@ -1,4 +1,16 @@
-import { moviesAxios } from './api/moviesDBApi';
+import { categoryAxios, moviesAxios } from './api/moviesDBApi';
+
+export const setCategoriesData = () => {
+    return (dispatch, getState) => {
+        const response = categoryAxios.get('/getAllCategories');
+        response.then((res) => {
+            dispatch({
+                type: 'SET_CATEGORIES_DATA',
+                payload: res.data
+            });
+        });
+    };
+};
 
 export const setMoviesData = () => {
     return (dispatch, getState) => {

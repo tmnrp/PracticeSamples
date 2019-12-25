@@ -1,8 +1,8 @@
-package com.tmnrp.moviesdb.category.entity;
+package com.tmnrp.moviesdb.categories.entity;
 
 import java.util.UUID;
 
-public class Category {
+public class Categories {
 	private UUID id;
 	private String name;
 
@@ -27,10 +27,10 @@ public class Category {
 		return "Category [id=" + id + ", name=" + name + "]";
 	}
 
-	public Category() {
+	public Categories() {
 	}
 
-	public Category(UUID id, String name) {
+	public Categories(UUID id, String name) {
 		super();
 		this.id = id;
 		this.name = name;

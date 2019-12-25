@@ -1,4 +1,4 @@
-package com.tmnrp.moviesdb.entity;
+package com.tmnrp.moviesdb.movies.entity;
 
 import java.util.UUID;
 
