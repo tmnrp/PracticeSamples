@@ -3,8 +3,17 @@ import React from 'react';
 class NavBar extends React.Component {
     render() {
         return (
-            <nav class="navbar navbar-light bg-light">
-                <a class="navbar-brand" href="#">Movies DB</a>
+            <nav
+                className="navbar navbar-light bg-light"
+                style={
+                    {
+                        height: "30px",
+                        justifyContent: "center",
+                        alignContent: "center"
+                    }
+                }
+            >
+                <h6 >Movies DataBase</h6>
             </nav>
         );
     };

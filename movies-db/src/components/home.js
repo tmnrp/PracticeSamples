@@ -1,4 +1,6 @@
 import React from 'react';
+
+import Carousel from './carousel';
 import SideMenu from './SideMenu';
 import Dashboard from './dashboard';
 
@@ -6,16 +8,16 @@ class Home extends React.Component {
     render() {
         return (
             <div className="container-fluid">
-                <h1 >Carousel</h1>
-                <div class="row">
-                    <div class="col-2">
+                <Carousel />
+                <div className="row no-gutters">
+                    <div className="col-2">
                         <div className="card">
                             <div className="card-body">
                                 <SideMenu />
                             </div>
                         </div>
                     </div>
-                    <div class="col-10">
+                    <div className="col-10">
                         <div className="card">
                             <div className="card-body">
                                 <Dashboard />

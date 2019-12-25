@@ -9,7 +9,7 @@ class App extends React.Component {
             <div >
                 <NavBar />
                 <div >
-                <Home />
+                    <Home />
                 </div>
                 <Footer />
             </div>
