@@ -21,7 +21,7 @@ class Carousel extends React.Component {
                         <ol className="carousel-indicators">
                             {this.props.moviesData.map((movie, index) => {
                                 return (
-                                    <li
+                                    <li key={movie.id}
                                         data-target="#carouselExampleCaptions"
                                         data-slide-to={index}
                                         className={(index === 0) ? "active" : ""}></li>
