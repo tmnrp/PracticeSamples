@@ -6,7 +6,7 @@ class Dashboard extends React.Component {
         return (
             <div >
                 Dashboard
-                <MoviesList />
+                <MoviesList moviesData={this.props.moviesData} />
             </div>
         );
     };

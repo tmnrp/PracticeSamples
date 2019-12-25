@@ -3,6 +3,10 @@ import React from 'react';
 class Carousel extends React.Component {
 
     render() {
+        if (!this.props.moviesData) {
+            return <div >Empty</div>;
+        }
+        const activeCarouselCount = 0;
         return (
             <div className="row no-gutters">
                 <div className="col">
@@ -15,44 +19,31 @@ class Carousel extends React.Component {
                 <div className="col-8">
                     <div id="carouselExampleCaptions" className="carousel slide" data-ride="carousel">
                         <ol className="carousel-indicators">
-                            <li data-target="#carouselExampleCaptions" data-slide-to="0" className="active"></li>
-                            <li data-target="#carouselExampleCaptions" data-slide-to="1"></li>
-                            <li data-target="#carouselExampleCaptions" data-slide-to="2"></li>
+                            {this.props.moviesData.map((movie, index) => {
+                                return (
+                                    <li
+                                        data-target="#carouselExampleCaptions"
+                                        data-slide-to={index}
+                                        className={(index === 0) ? "active" : ""}></li>
+                                );
+                            })}
                         </ol>
                         <div className="carousel-inner">
-                            <div className="carousel-item active">
-                                <img
-                                    src="https://images.unsplash.com/photo-1538051046377-5ad74dc62f95?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1050&q=80"
-                                    height="250"
-                                    width="100%"
-                                />
-                                <div className="carousel-caption d-none d-md-block">
-                                    <h5>First slide label</h5>
-                                    <p>Nulla vitae elit libero, a pharetra augue mollis interdum.</p>
-                                </div>
-                            </div>
-                            <div className="carousel-item">
-                                <img
-                                    src="https://images.unsplash.com/photo-1560701325-63e0ecc5288f?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1050&q=80"
-                                    height="250"
-                                    width="100%"
-                                />
-                                <div className="carousel-caption d-none d-md-block">
-                                    <h5>Second slide label</h5>
-                                    <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
-                                </div>
-                            </div>
-                            <div className="carousel-item">
-                                <img
-                                    src="https://images.unsplash.com/photo-1497124401559-3e75ec2ed794?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1050&q=80"
-                                    height="250"
-                                    width="100%"
-                                />
-                                <div className="carousel-caption d-none d-md-block">
-                                    <h5>Third slide label</h5>
-                                    <p>Praesent commodo cursus magna, vel scelerisque nisl consectetur.</p>
-                                </div>
-                            </div>
+                            {this.props.moviesData.map((movie, index) => {
+                                return (
+                                    <div key={movie.id} className={(index === 0) ? "carousel-item active" : "carousel-item"}>
+                                        <img
+                                            src={movie.imgCarousel}
+                                            height="250"
+                                            width="100%"
+                                        />
+                                        <div className="carousel-caption d-none d-md-block">
+                                            <h5>{movie.imgTitle}</h5>
+                                            <p>{movie.imgDescription}</p>
+                                        </div>
+                                    </div>
+                                );
+                            })}
                         </div>
                         <a className="carousel-control-prev" href="#carouselExampleCaptions" role="button" data-slide="prev">
                             <span className="carousel-control-prev-icon" aria-hidden="true"></span>
