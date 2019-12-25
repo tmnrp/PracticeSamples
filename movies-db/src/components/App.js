@@ -1,17 +1,19 @@
 import React from 'react';
-
-import Header from './header';
+import NavBar from './navbar';
+import Home from './home';
 import Footer from './footer';
 
 class App extends React.Component {
     render() {
-        return (<div >
-            <Header />
-            <div style={{height: '70vh'}}>
-                App
+        return (
+            <div >
+                <NavBar />
+                <div >
+                <Home />
+                </div>
+                <Footer />
             </div>
-            <Footer />
-        </div>);
+        );
     };
 }
 

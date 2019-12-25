@@ -3,14 +3,9 @@ import React from 'react';
 class Footer extends React.Component {
     render() {
         return (
-            <div className="navbar navbar-dark bg-dark" style={{ height: '20vh' }}>
-                <a className="navbar-brand" href="#">
-                    <img
-                        src="../resources/movie.png"
-                        className="d-inline-block align-top"
-                        alt=""
-                    />Footer</a>
-            </div>
+            <nav class="navbar fixed-bottom navbar-dark bg-dark">
+                <a class="navbar-brand" href="#">Fixed bottom</a>
+            </nav>
         );
     };
 }
