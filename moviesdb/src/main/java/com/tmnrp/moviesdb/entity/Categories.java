@@ -1,9 +1,19 @@
-package com.tmnrp.moviesdb.categories.entity;
+package com.tmnrp.moviesdb.entity;
 
 import java.util.UUID;
 
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+
+@Entity
 public class Categories {
+
+	@Id
+	@GeneratedValue(strategy = GenerationType.AUTO)
 	private UUID id;
+
 	private String name;
 
 	public UUID getId() {
@@ -24,10 +34,11 @@ public class Categories {
 
 	@Override
 	public String toString() {
-		return "Category [id=" + id + ", name=" + name + "]";
+		return "Categories [id=" + id + ", name=" + name + "]";
 	}
 
 	public Categories() {
+		super();
 	}
 
 	public Categories(UUID id, String name) {

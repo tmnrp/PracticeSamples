@@ -2,7 +2,6 @@ import React from 'react';
 import { connect } from 'react-redux';
 
 import { setCategoriesData } from '../actions';
-import { moviesAxios } from '../api/moviesDBApi';
 
 class SideMenu extends React.Component {
 

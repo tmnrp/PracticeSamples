@@ -7,3 +7,7 @@ export const categoryAxios = axios.create({
 export const moviesAxios = axios.create({
     baseURL: 'http://localhost:8080/movies'
 });
+
+export const moviesDBAxios = axios.create({
+    baseURL: 'http://localhost:8080/moviesdb'
+});

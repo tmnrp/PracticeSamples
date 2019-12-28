@@ -1,8 +1,8 @@
-import { categoryAxios, moviesAxios } from './api/moviesDBApi';
+import { moviesDBAxios } from './api/moviesDBApi';
 
 export const setCategoriesData = () => {
     return (dispatch, getState) => {
-        const response = categoryAxios.get('/getAllCategories');
+        const response = moviesDBAxios.get('/getAllCategories');
         response.then((res) => {
             dispatch({
                 type: 'SET_CATEGORIES_DATA',
@@ -14,7 +14,7 @@ export const setCategoriesData = () => {
 
 export const setMoviesData = () => {
     return (dispatch, getState) => {
-        const response = moviesAxios.get('/getAllMovies');
+        const response = moviesDBAxios.get('/getAllMovies');
         response.then((res) => {
             dispatch({
                 type: 'SET_MOVIES_DATA',
