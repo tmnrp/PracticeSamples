@@ -2,10 +2,16 @@ import React from 'react';
 
 class Carousel extends React.Component {
 
-    render() {
-        if (!this.props.moviesData) {
-            return <div >Empty</div>;
+    getCarouselImgSrcFromMovies = (movie) => {
+        const img= movie.images.filter(function(img){
+            return img.type === 'CAROUSEL'
+        });
+        if (img.length > 0) {
+            return {src: img[0].src, altText: img[0].altText};
         }
+    };
+
+    render() {
         const activeCarouselCount = 0;
         return (
             <div className="row no-gutters">
@@ -30,16 +36,18 @@ class Carousel extends React.Component {
                         </ol>
                         <div className="carousel-inner">
                             {this.props.moviesData.map((movie, index) => {
+                                const carousel= this.getCarouselImgSrcFromMovies(movie);
                                 return (
                                     <div key={movie.id} className={(index === 0) ? "carousel-item active" : "carousel-item"}>
                                         <img
-                                            src={movie.imgCarousel}
+                                            src={carousel.src}
+                                            alt= {carousel.altText}
                                             height="250"
                                             width="100%"
                                         />
                                         <div className="carousel-caption d-none d-md-block">
-                                            <h5>{movie.imgTitle}</h5>
-                                            <p>{movie.imgDescription}</p>
+                                            <h5>{movie.title}</h5>
+                                            <p>{movie.description}</p>
                                         </div>
                                     </div>
                                 );

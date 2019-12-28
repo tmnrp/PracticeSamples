@@ -1,7 +1,7 @@
 import React from 'react';
 
 import { connect } from 'react-redux';
-import { setMoviesData } from '../actions';
+import { setMoviesData, setCarouselData } from '../actions';
 import Carousel from './carousel';
 import SideMenu from './SideMenu';
 import Dashboard from './dashboard';

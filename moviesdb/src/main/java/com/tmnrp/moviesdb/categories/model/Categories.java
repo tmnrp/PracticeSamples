@@ -1,7 +1,8 @@
-package com.tmnrp.moviesdb.entity;
+package com.tmnrp.moviesdb.categories.model;
 
 import java.util.UUID;
 
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -12,9 +13,24 @@ public class Categories {
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
+	@Column(columnDefinition = "BINARY(16)")
 	private UUID id;
 
 	private String name;
+
+	public Categories() {
+		super();
+	}
+
+	public Categories(String name) {
+		super();
+		this.name = name;
+	}
+
+	@Override
+	public String toString() {
+		return "Categories [id=" + id + ", name=" + name + "]";
+	}
 
 	public UUID getId() {
 		return id;
@@ -31,20 +47,4 @@ public class Categories {
 	public void setName(String name) {
 		this.name = name;
 	}
-
-	@Override
-	public String toString() {
-		return "Categories [id=" + id + ", name=" + name + "]";
-	}
-
-	public Categories() {
-		super();
-	}
-
-	public Categories(UUID id, String name) {
-		super();
-		this.id = id;
-		this.name = name;
-	}
-
 }
