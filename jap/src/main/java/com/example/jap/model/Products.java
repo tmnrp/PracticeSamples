@@ -14,6 +14,7 @@ public class Products {
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
+	@Column(columnDefinition = "BINARY(16)")
 	private UUID id;
 
 	private String name;
@@ -65,9 +66,8 @@ public class Products {
 		// TODO Auto-generated constructor stub
 	}
 
-	public Products(UUID id, String name, double price, LocalDate expirationDate) {
+	public Products(String name, double price, LocalDate expirationDate) {
 		super();
-		this.id = id;
 		this.name = name;
 		this.price = price;
 		this.expirationDate = expirationDate;
