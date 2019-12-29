@@ -19,31 +19,43 @@ class SideMenu extends React.Component {
         }
         return (
             <div >
-                <div className="card">
-                    <div >
-                        <div className="card-header">
-                            Categories
+                <div >
+                    <div className="card-header">
+                        Categories
                             <button
-                                className="btn btn-info btn-sm fa fa-plus"
-                                style={{ float: "right" }}
-                                data-toggle="modal"
-                                data-target="#create-category"
-                            ></button>
-                        </div>
+                            className="btn btn-info btn-sm fa fa-plus"
+                            style={{ float: "right" }}
+                            data-toggle="modal"
+                            data-target="#create-category"
+                        ></button>
                     </div>
-                    <ul className="list-group list-group-flush">
-                        {this.props.categories.map((category) => {
-                            return (
-                                <li className="list-group-item" key={category.id}>
-                                    <div className="custom-control custom-checkbox">
-                                        <input type="checkbox" className="custom-control-input" id={category.id} onClick={this.clicked} />
-                                        <label className="custom-control-label" htmlFor={category.id}>{category.name}</label>
-                                    </div>
-                                </li>
-                            );
-                        })}
-                    </ul>
                 </div>
+                <ul className="list-group list-group-flush">
+                    {this.props.categories.map((category) => {
+                        return (
+                            <li className="list-group-item d-flex justify-content-between align-items-center" style={{padding: "5px 10px 5px 10px"}}>
+                                <div className="custom-control custom-checkbox">
+                                    <input type="checkbox" className="custom-control-input" id={category.id} onClick={this.clicked} />
+                                    <label className="custom-control-label" htmlFor={category.id}>{category.name}</label>
+                                </div>
+                                <div >
+                                    <span className="fa fa-edit" style={{ paddingRight: "5px" }} />
+                                    <span className="fa fa-trash" style={{ paddingRight: "5px" }} />
+                                </div>
+                            </li>
+                            /*<li key={category.id} className="list-group-item" style={{ display: "flex", justifyContent: "space-between", padding:"5 10 5 10"}}>
+                                <div className="custom-control custom-checkbox">
+                                    <input type="checkbox" className="custom-control-input" id={category.id} onClick={this.clicked} />
+                                    <label className="custom-control-label" htmlFor={category.id}>{category.name}</label>
+                                </div>
+                                <div>
+                                    <span className="fa fa-edit" style={{ paddingRight: "5px" }}></span>
+                                    <span className="fa fa-trash" style={{ paddingLeft: "5px" }}></span>
+                                </div>
+                            </li>*/
+                        );
+                    })}
+                </ul>
             </div>
         );
     };

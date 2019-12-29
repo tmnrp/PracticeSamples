@@ -21,6 +21,9 @@ class CreateCategory extends React.Component {
         }).then((response) => {
             this.props.setCategoriesData();
             window.$('#create-category').modal('hide');
+            this.setState({
+                name: ''
+            });
         }).catch((response) => {
             console.log('Error: ', response);
         });
