@@ -35,14 +35,14 @@ public class MoviesDBController {
 	private ImagesRepository imagesRepo;
 
 	// Categories
-	@CrossOrigin
+	@CrossOrigin(origins = "http://moviesdb:3000")
 	@ResponseBody
 	@RequestMapping(value = "/getAllCategories", method = RequestMethod.GET)
 	public List<Categories> getAllCategory() {
 		return categoriesRepo.findAll();
 	}
 
-	@CrossOrigin
+	@CrossOrigin(origins = "http://moviesdb:3000")
 	@ResponseBody
 	@RequestMapping(value = "/saveCategory", method = RequestMethod.POST)
 	public String saveCategory(@RequestBody CategoryDTO categoryDTO) {
@@ -51,7 +51,7 @@ public class MoviesDBController {
 		return category.toString();
 	}
 
-	@CrossOrigin
+	@CrossOrigin(origins = "http://moviesdb:3000")
 	@ResponseBody
 	@RequestMapping(value = "/saveCategories", method = RequestMethod.POST)
 	public List<Categories> saveCategories(@RequestBody List<CategoryDTO> categoreis) {
@@ -63,14 +63,14 @@ public class MoviesDBController {
 	}
 
 	// Images
-	@CrossOrigin
+	@CrossOrigin(origins = "http://moviesdb:3000")
 	@ResponseBody
 	@RequestMapping(value = "/getAllImages", method = RequestMethod.GET)
 	public List<Images> getAllImages() {
 		return imagesRepo.findAll();
 	}
 
-	@CrossOrigin
+	@CrossOrigin(origins = "http://moviesdb:3000")
 	@ResponseBody
 	@RequestMapping(value = "/saveImage", method = RequestMethod.POST)
 	public String saveImage(@RequestBody ImagesDTO imagesDTO) {
@@ -79,7 +79,7 @@ public class MoviesDBController {
 		return image.toString();
 	}
 
-	@CrossOrigin
+	@CrossOrigin(origins = "http://moviesdb:3000")
 	@ResponseBody
 	@RequestMapping(value = "/saveImages", method = RequestMethod.POST)
 	public List<Images> saveImages(@RequestBody List<ImagesDTO> images) {
@@ -91,14 +91,14 @@ public class MoviesDBController {
 	}
 
 	// Movies
-	@CrossOrigin
+	@CrossOrigin(origins = "http://moviesdb:3000")
 	@ResponseBody
 	@RequestMapping(value = "/getAllMovies", method = RequestMethod.GET)
 	public List<Movies> getAllMovies() {
 		return moviesRepo.findAll();
 	}
 
-	@CrossOrigin
+	@CrossOrigin(origins = "http://moviesdb:3000")
 	@ResponseBody
 	@RequestMapping(value = "/saveMovie", method = RequestMethod.POST)
 	public String saveMovie(@RequestBody MoviesDTO movie) {
@@ -115,7 +115,7 @@ public class MoviesDBController {
 		return movies.toString();
 	}
 
-	@CrossOrigin
+	@CrossOrigin(origins = "http://moviesdb:3000")
 	@ResponseBody
 	@RequestMapping(value = "/saveMovies", method = RequestMethod.POST)
 	public Object saveMovies(@RequestBody List<MoviesDTO> movies) {

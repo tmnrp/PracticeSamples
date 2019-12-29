@@ -19,18 +19,30 @@ class SideMenu extends React.Component {
         }
         return (
             <div >
-                <h6 style={{ textAlign: "center" }}>Select Categories</h6>
                 <div className="card">
-                    <div className="card-body">
+                    <div >
+                        <div className="card-header">
+                            Categories
+                            <button
+                                className="btn btn-info btn-sm fa fa-plus"
+                                style={{ float: "right" }}
+                                data-toggle="modal"
+                                data-target="#create-category"
+                            ></button>
+                        </div>
+                    </div>
+                    <ul className="list-group list-group-flush">
                         {this.props.categories.map((category) => {
                             return (
-                                <div key={category.id} className="custom-control custom-checkbox">
-                                    <input type="checkbox" className="custom-control-input" id={category.id} onClick={this.clicked} />
-                                    <label className="custom-control-label" htmlFor={category.id}>{category.name}</label>
-                                </div>
+                                <li className="list-group-item" key={category.id}>
+                                    <div className="custom-control custom-checkbox">
+                                        <input type="checkbox" className="custom-control-input" id={category.id} onClick={this.clicked} />
+                                        <label className="custom-control-label" htmlFor={category.id}>{category.name}</label>
+                                    </div>
+                                </li>
                             );
                         })}
-                    </div>
+                    </ul>
                 </div>
             </div>
         );
