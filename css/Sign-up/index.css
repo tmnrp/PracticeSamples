@@ -1,0 +1,96 @@
+* {
+    box-sizing: border-box;
+    padding: 0;
+    margin: 0;
+}
+
+body {
+    background-color: #3b5998;
+    font-family: 'ubuntu', sans-serif;
+}
+
+#maincontainer {
+    display: block;
+    margin: auto;
+    max-width: 350px;
+    margin: auto;
+    padding-top: 3%;
+}
+
+.bg-white {
+    background-color: white;
+}
+
+.block {
+    display: block;
+}
+
+.txt-white {
+    color: white;
+}
+
+.txt-green {
+    color: lightgreen;
+}
+
+.center {
+    text-align: center;
+}
+
+.lineheight40 {
+    line-height: 40px;
+}
+
+.lineheight20 {
+    line-height: 20px;
+}
+
+.bodrad5 {
+    border-radius: 5px;
+}
+
+.bodrad10 {
+    border-radius: 10px;
+}
+
+.bodrad20 {
+    border-radius: 20px;
+}
+
+.mgtp20 {
+    margin-top: 20px;
+}
+
+.mgtp10 {
+    margin-top: 10px;
+}
+
+#fieldcontainer{
+    padding: 20px;
+}
+
+#fieldcontainer input{
+    width: 100%;
+}
+
+.btncreate {
+    text-decoration-line: none;
+    background-color: #649C50;
+    height: 40px;
+}
+
+.font-size-sm {
+    font-size: small;
+}
+
+.txt-align-cnt {
+    text-align: center;
+}
+
+.inputheight25 {
+    height: 25px;
+}
+
+.py-1 {
+    padding: 5px 0px;
+}
