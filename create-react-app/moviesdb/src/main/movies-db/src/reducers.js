@@ -14,7 +14,15 @@ const categoriesDataReducer = (categoriesData = [], action) => {
     return categoriesData;
 };
 
+const categoryModalModeReducer = (categoryModalMode = '', action) => {
+    if (action.type === 'SET_CATEGORY_MODAL_MODE') {
+        return action.payload;
+    }
+    return categoryModalMode;
+};
+
 export default combineReducers({
     moviesData: moviesDataReducer,
-    categoriesData: categoriesDataReducer
+    categoriesData: categoriesDataReducer,
+    categoryModalMode: categoryModalModeReducer
 });

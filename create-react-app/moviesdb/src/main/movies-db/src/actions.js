@@ -23,3 +23,10 @@ export const setMoviesData = () => {
         });
     };
 };
+
+export const setCategoryModalMode = (categoryModalMode) => {
+    return {
+        type: 'SET_CATEGORY_MODAL_MODE',
+        payload: categoryModalMode
+    };
+};

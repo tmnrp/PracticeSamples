@@ -30,14 +30,14 @@ class CreateCategory extends React.Component {
     };
 
     render() {
-        return (
 
+        return (
             <div >
                 <div className="modal fade" id="create-category" tabIndex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
                     <div className="modal-dialog modal-xl" role="document">
                         <div className="modal-content">
                             <div className="modal-header">
-                                <h5 className="modal-title" id="exampleModalLabel">Create</h5>
+                                <h5 className="modal-title" id="exampleModalLabel">{this.props.categoryModalMode}</h5>
                                 <button type="button" className="close" data-dismiss="modal" aria-label="Close">
                                     <span aria-hidden="true">&times;</span>
                                 </button>
@@ -74,10 +74,16 @@ class CreateCategory extends React.Component {
     };
 }
 
+const mapStateToProps = (state) => {
+    return {
+        categoryModalMode: state.categoryModalMode
+    };
+};
+
 const mapActionToProps = () => {
     return {
         setCategoriesData: setCategoriesData
     };
 };
 
-export default connect(null, mapActionToProps())(CreateCategory);
+export default connect(mapStateToProps, mapActionToProps())(CreateCategory);

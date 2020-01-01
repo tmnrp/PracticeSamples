@@ -1,7 +1,7 @@
 import React from 'react';
 import { connect } from 'react-redux';
 
-import { setCategoriesData } from '../actions';
+import { setCategoriesData, setCategoryModalMode } from '../actions';
 
 class SideMenu extends React.Component {
 
@@ -13,6 +13,15 @@ class SideMenu extends React.Component {
         console.log(e.target.checked);
     };
 
+    processCategory = (mode) => {
+        this.props.setCategoryModalMode(mode);
+        if (mode === 'Create') {
+
+        } else {
+
+        }
+    };
+
     render() {
         if (!this.props.categories) {
             return <div >Loading</div>;
@@ -22,37 +31,39 @@ class SideMenu extends React.Component {
                 <div >
                     <div className="card-header">
                         Categories
-                            <button
+                        <div
                             className="btn btn-info btn-sm fa fa-plus"
                             style={{ float: "right" }}
                             data-toggle="modal"
                             data-target="#create-category"
-                        ></button>
+                            onClick={() => this.processCategory('Create')}
+                        ></div>
                     </div>
                 </div>
                 <ul className="list-group list-group-flush">
                     {this.props.categories.map((category) => {
                         return (
-                            <li className="list-group-item d-flex justify-content-between align-items-center" style={{padding: "5px 10px 5px 10px"}}>
+                            <li key={category.id} className="list-group-item d-flex justify-content-between align-items-center" style={{ padding: "5px 10px 5px 10px" }}>
                                 <div className="custom-control custom-checkbox">
                                     <input type="checkbox" className="custom-control-input" id={category.id} onClick={this.clicked} />
                                     <label className="custom-control-label" htmlFor={category.id}>{category.name}</label>
                                 </div>
                                 <div >
-                                    <span className="fa fa-edit" style={{ paddingRight: "5px" }} />
-                                    <span className="fa fa-trash" style={{ paddingRight: "5px" }} />
+                                    <span
+                                        className="fa fa-edit"
+                                        style={{ paddingRight: "5px" }}
+                                        data-toggle="modal"
+                                        data-target="#create-category"
+                                        onClick={() => this.processCategory('Edit')}
+                                    />
+                                    <span
+                                        className="fa fa-trash"
+                                        style={{ paddingleft: "5px" }}
+                                        data-toggle="modal"
+                                        data-target="#create-category"
+                                    />
                                 </div>
                             </li>
-                            /*<li key={category.id} className="list-group-item" style={{ display: "flex", justifyContent: "space-between", padding:"5 10 5 10"}}>
-                                <div className="custom-control custom-checkbox">
-                                    <input type="checkbox" className="custom-control-input" id={category.id} onClick={this.clicked} />
-                                    <label className="custom-control-label" htmlFor={category.id}>{category.name}</label>
-                                </div>
-                                <div>
-                                    <span className="fa fa-edit" style={{ paddingRight: "5px" }}></span>
-                                    <span className="fa fa-trash" style={{ paddingLeft: "5px" }}></span>
-                                </div>
-                            </li>*/
                         );
                     })}
                 </ul>
@@ -69,7 +80,8 @@ const mapStateToProps = (state) => {
 
 const mapActionToProps = () => {
     return {
-        setCategories: setCategoriesData
+        setCategories: setCategoriesData,
+        setCategoryModalMode: setCategoryModalMode
     };
 };
 
