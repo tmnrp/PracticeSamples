@@ -51,6 +51,9 @@ body {
     flex-direction: column;
     justify-content: center;
     padding: 0.5rem 2rem;
+    position: sticky;
+    top: 0;
+    z-index: 1;
 }
 
 #navbar .nav-content{
