@@ -1,0 +1,108 @@
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+:root {
+    --page-1-color: steelblue;
+    --page-2-color: tan;
+    --page-3-color: teal;
+    --page-4-color: slateblue;
+}
+
+body {
+    font-family: monospace;
+    line-height: 2rem;
+    color: #fff;
+    margin: 0;
+    padding: 0;
+    overflow: hidden;
+}
+
+a {
+    text-decoration: none;
+    color: #fff;
+}
+
+/* page colors */
+
+#page-1 {
+    background-color: var(--page-1-color);
+}
+
+#page-2 {
+    background-color: var(--page-2-color);
+}
+
+#page-3 {
+    background-color: var(--page-3-color);
+}
+
+#page-4 {
+    background-color: var(--page-4-color);
+}
+
+.page {
+    display: flex;
+    flex-direction: column;
+    height: 100vh;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    padding: 0rem 2rem;
+}
+
+.btn-dark {
+    background-color: #333;
+    color: #f4f4f4;
+}
+
+.btn-light {
+    background-color: #f4f4f4;
+    color: #333;
+}
+
+.btn {
+    display: inline-block;
+    padding: 0.5rem 2rem;
+    transition: all 0.5s ease-in;
+}
+
+.btn-light:hover {
+    background-color: #333;
+    color: #f4f4f4;
+    border-radius: 2rem;
+}
+
+.page h1{
+    font-size: 4rem;
+    margin-bottom: 2rem;
+}
+
+#page-1 h1 {
+    transform: translatey(-20rem);
+    animation: heading 1s forwards ease-in;
+}
+
+@keyframes heading {
+    to {
+        transform: translate(0rem);
+    }
+}
+
+.page p{
+    font-size: 1.5rem;
+    margin-bottom: 2rem;
+}
+
+#page-1 p{
+    transform: translate(-85rem);
+    animation: para 1s forwards ease-in 1s;
+}
+
+@keyframes para {
+    to {
+        transform: translate(0rem);
+    }
+}
