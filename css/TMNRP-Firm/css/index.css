@@ -1,0 +1,201 @@
+html {
+    font-size: 10px;
+}
+
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    font-family: 'Ubuntu Condensed', sans-serif;
+}
+
+/* Utilities */
+
+/* sizings */
+.p-1 { padding: 1rem; }
+.p-2 { padding: 2rem; }
+.p-3 { padding: 3rem; }
+
+.py-1 { padding: 1rem 0; }
+.py-2 { padding: 2rem 0; }
+.py-3 { padding: 3rem 0; }
+
+.m-1 { margin: 1rem; }
+.m-2 { margin: 2rem; }
+.m-3 { margin: 3rem; }
+
+.f-1 { flex: 1;}
+.f-2 { flex: 2;}
+.f-3 { flex: 3;}
+
+/* colors light */
+.text-primary-light { color: #37BDAE; }
+.text-light { color: #fff; }
+.bg-primary-light { background-color: #37BDAE; }
+.bg-light { background-color: #fff; }
+
+/* colors dark */
+.text-primary-dark { color: #298E83; }
+.text-dark { color: #333; }
+.bg-primary-dark { background-color: #298E83; }
+.bg-dark { background-color: #333; }
+
+
+/* navbar */
+#navbar {
+    display: flex;
+    color: #fff;
+    flex-direction: column;
+    justify-content: center;
+    padding: 0.5rem 2rem;
+}
+
+#navbar .nav-content{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+}
+
+#navbar .nav-content .logo {
+    display: inline-block;
+    font-size: 2rem;
+    padding: 0.5rem 0rem;
+}
+
+#navbar .nav-content .menu {
+    list-style: none;
+    display: flex;
+    overflow: hidden;
+    justify-content: center;
+}
+
+#navbar .nav-content .menu .item a {
+    display: inline-block;
+    font-size: 1.5rem;
+    cursor: pointer;
+    padding: 0.75rem;
+    height: 100%;
+}
+
+#navbar .nav-content .menu .item a:hover {
+    background-color: #37BDAE;
+    color: #333;
+    border-radius: 0.5rem;
+}
+
+/* header - showcase */
+
+#showcase {
+    background: url('../imgs/showcase.jfif') no-repeat center center/cover;
+    height: 100vh;
+    color: #fff;
+}
+
+#showcase .content {
+    display: flex;
+    height: 100%;
+    width: 100%;
+    flex-direction: column;
+    justify-content: center;
+    text-align: center;
+    padding: 0rem 4rem;
+
+    /* overlay */
+    position: absolute;
+    background-color: rgba(0, 0, 0, 0.7);
+}
+
+#showcase .content .l-heading {
+    font-size: 8rem;
+    margin-bottom: 1rem;
+}
+
+#showcase .content .lead {
+    font-size: 2.5rem;
+}
+
+#showcase .content .btn {
+    margin-top: 2rem;
+    color: #fff;
+    text-decoration: none;
+    padding: 0.5rem 2rem;
+    font-size: 2rem;
+    background-color: #298E83;
+    display: inline-block;
+    border-radius: 0.5rem;
+}
+
+#showcase .content .btn:hover {
+    background-color: #37BDAE;
+}
+
+@media screen and (max-width: 700px) {
+    #showcase .content .l-heading {
+        font-size: 7.2rem;
+    }
+    #showcase .content .lead {
+        font-size: 2rem;
+    }
+    #showcase .content .btn {
+        font-size: 1.75rem;
+    }
+}
+
+@media screen and (max-width: 600px) {
+    #showcase .content .l-heading {
+        font-size: 5.8rem;
+    }
+    #showcase .content .lead {
+        font-size: 2rem;
+    }
+    #showcase .content .btn {
+        font-size: 1.5rem;
+    }
+}
+
+@media screen and (max-width: 500px) {
+    #navbar .nav-content{
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        text-align: center;
+        padding: 0rem 2rem;
+    }
+    #navbar .nav-content .logo {
+        padding: 0.25rem 0rem;
+    }
+    #navbar .nav-content .menu .item a {
+        padding: 0.25rem 0.75rem;
+    }
+    #showcase .content .l-heading {
+        font-size: 4.4rem;
+    }
+    #showcase .content .lead {
+        font-size: 1.75rem;
+    }
+    #showcase .content .btn {
+        font-size: 1.25rem;
+    }
+}
+
+@media screen and (max-width: 400px) {
+    #navbar .nav-content{
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        text-align: center;
+        padding: 0rem 2rem;
+    }
+    #navbar .nav-content .logo {
+        padding: 0.25rem 0rem;
+    }
+    #showcase .content .l-heading {
+        font-size: 3rem;
+    }
+    #showcase .content .lead {
+        font-size: 1.5rem;
+    }
+}
