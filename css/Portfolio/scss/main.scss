@@ -1,0 +1,91 @@
+@import "../scss/config";
+
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+#showcase:before {
+  content: "";
+  background: url($img-showcase) no-repeat center center/cover;
+  position: absolute;
+  top: 0;
+  left: 0;
+  height: 100vh;
+  width: 100%;
+  opacity: 0.5;
+  z-index: -1;
+}
+
+#showcase {
+  color: $light-color;
+  height: 100vh;
+  position: relative;
+  background-color: rgba(0, 0, 0, 0.7);
+}
+
+#navbar {
+  background-color: $dark-color;
+  position: sticky;
+  top: 0;
+  z-index: 2;
+  //
+  .container {
+    max-width: 80%;
+    margin: auto;
+    display: flex;
+    justify-content: space-between;
+    padding: 0.5rem 0;
+
+    //
+    .logo {
+      content: url($img-logo);
+      color: $light-color;
+      height: 3rem;
+      width: 5rem;
+    }
+
+    //
+    ul {
+      display: flex;
+      list-style: none;
+
+      //
+      li {
+        //
+        a {
+          display: inline-block;
+          color: $light-color;
+          text-decoration: $light-color;
+          justify-self: center;
+          padding: 0.5rem 1rem;
+          border-style: none;
+
+          //
+          &:hover {
+            border-bottom-style: double;
+          }
+        }
+      }
+    }
+  }
+}
+.current {
+  border-bottom-style: double !important;
+}
+
+#work {
+  height: 100vh;
+  background-color: yellow;
+}
+
+#about-us {
+  height: 100vh;
+  background-color: lightcoral;
+}
+
+#contact {
+  height: 100vh;
+  background-color: lightskyblue;
+}
