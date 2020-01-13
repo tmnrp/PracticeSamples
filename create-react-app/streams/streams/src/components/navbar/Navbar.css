@@ -1,0 +1,45 @@
+#navbar {
+    padding: 0.25rem 0;
+}
+
+#navbar .container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+#navbar .container .logon {
+    padding: 0.1rem;
+    cursor: pointer;
+    color: var(--secondary-dark);
+    transition: all 0.5s ease-in;
+}
+
+#navbar .container .logon:hover {
+    color: var(--secondary-light);
+    transition: all 0.5s ease-in;
+}
+
+#navbar .container .logo {
+    display: flex;
+    align-items: center;
+}
+
+#navbar .container .logo i {
+    padding-right: 0.5rem;
+}
+
+#navbar .container .menu {
+    display: flex;
+    list-style: none;
+}
+
+#navbar .container .menu .item {
+    display: inline-block;
+    padding: 0.5rem 0.75rem;
+}
+
+#navbar .container .menu .item:hover {
+    border-radius: 0.25rem;
+    background-color: var(--primary-light);
+}

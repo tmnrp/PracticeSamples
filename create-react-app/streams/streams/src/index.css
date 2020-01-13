@@ -1,0 +1,55 @@
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+html, body {
+    font-family: 'Ubuntu Condensed', sans-serif;
+}
+
+:root {
+    --dark: #333;
+    --light: #fff;
+    --primary-dark: #298E83;
+    --primary-light: #37BDAE;
+    --secondary-light: #FFDC00;
+    --secondary-dark: #FF4136;
+}
+
+.dark {
+    color: var(--dark);
+}
+
+.light {
+    color: var(--light);
+}
+
+.bg-dark {
+    background-color: var(--dark);
+}
+
+.bg-light {
+    background-color: var(--light);
+}
+
+.primary-dark {
+    color: var(--primary-dark);
+}
+
+.primary-light {
+    color: var(--primary-light);
+}
+
+.secondary-dark {
+    color: var(--secondary-dark);
+}
+
+.secondary-light {
+    color: var(--secondary-light);
+}
+
+.container {
+    max-width: 1080px;
+    margin: auto;
+}
