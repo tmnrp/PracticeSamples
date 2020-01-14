@@ -1,5 +1,7 @@
 import './Navbar.css';
 import React from 'react';
+import { connect } from 'react-redux';
+import { processLogon } from '../../actions';
 
 class Navbar extends React.Component {
     render() {
@@ -10,7 +12,11 @@ class Navbar extends React.Component {
                         <i className="fas fa-anchor fa-2x primary-light"></i>
                         <h3><span className="primary-light">Tony</span>Martin</h3>
                     </div>
-                    <i className="logon fab fa-google fa-2x secondary-dark"></i>
+                    <i
+                        className="logon fab fa-google fa-2x secondary-dark"
+                        onClick={() => this.props.processLogon('login')}
+                    >
+                    </i>
                     <ul className="menu">
                         <li className="item"><span>Home</span></li>
                         <li className="item"><span>About Us</span></li>
@@ -22,4 +28,12 @@ class Navbar extends React.Component {
     };
 }
 
-export default Navbar;
+const mapStateToProps = (state) => {
+    return state;
+};
+const mapActionToProps = () => {
+    return {
+        processLogon: processLogon
+    };
+};
+export default connect(mapStateToProps, mapActionToProps())(Navbar);
