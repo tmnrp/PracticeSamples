@@ -1,14 +1,14 @@
 import { combineReducers } from 'redux';
 
-const userLoggedInReducer = (isUserLoggedIn = false, action) => {
-    if (action.type === 'LOGGED_IN') {
+const isUserLoggedinReducer = (isUserLoggedin = false, action) => {
+    if (action.type === 'USER_LOGGED_IN') {
         return true;
-    } else if (action.type === 'LOGGED_OUT') {
+    } else if (action.type === 'USER_LOGGED_OUT') {
         return false;
     }
-    return isUserLoggedIn;
+    return isUserLoggedin;
 };
 
 export default combineReducers({
-    isUserLoggedIn: userLoggedInReducer
+    isUserLoggedIn: isUserLoggedinReducer
 });

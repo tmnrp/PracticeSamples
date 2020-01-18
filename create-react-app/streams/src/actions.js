@@ -1,12 +1,11 @@
-import { gapiSignin } from './components/GoogleAuth';
+export const setLoggedIn = () => {
+    return {
+        type: 'USER_LOGGED_IN'
+    };
+};
 
-export const processLogon = (mode) => {
-    return (dispatch, getState) => {
-        gapiSignin(() => {
-            dispatch({
-                type: (mode === 'login') ? 'LOGGED_IN' : 'LOGGED_OUT',
-                payload: (mode === 'login') ? true : false
-            });
-        });
+export const setLoggedOut = () => {
+    return {
+        type: 'USER_LOGGED_OUT'
     };
 };
