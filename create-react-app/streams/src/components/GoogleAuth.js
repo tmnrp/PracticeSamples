@@ -6,7 +6,7 @@ export const gapiSignout = () => {
     processLogon('logout');
 };
 
-const initGApi = (mode) => {
+const initGApi = (mode, successCallBack) => {
     if (!window.gapi.auth2 && window.gapi && window.gapi.load) {
         window.gapi.load('client:auth2', () => {
             window.gapi.client.init({
@@ -15,20 +15,20 @@ const initGApi = (mode) => {
             });
 
             // initial process
-            processLogon(mode);
+            processLogon(mode, successCallBack);
         });
     }
 };
 
-const processLogon = (mode) => {
+const processLogon = (mode, successCallBack) => {
     if (window.gapi.auth2) {
         const auth2 = window.gapi.auth2.getAuthInstance();
         if (mode === 'login') {
-            auth2.signIn();
+            auth2.signIn().then(successCallBack);
         } else if (mode === 'logout') {
-            auth2.signOut();
+            auth2.signOut().then(successCallBack);
         }
     } else {
-        initGApi(mode);
+        initGApi(mode, successCallBack);
     }
 };
