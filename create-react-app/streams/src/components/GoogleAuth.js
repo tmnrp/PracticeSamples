@@ -31,11 +31,13 @@ class GoogleAuth extends React.Component {
         if (this.auth2 && this.auth2.isSignedIn.get()) {
             const user = this.auth2.currentUser.get();
             this.setState({
-                userName: 'Welcome ' + user.getBasicProfile().getName()
+                userName: 'Welcome ' + user.getBasicProfile().getName(),
+                isUserLoggedIn: true
             });
         } else {
             this.setState({
-                userName: 'Sign in with google'
+                userName: 'Sign in with google',
+                isUserLoggedIn: false
             })
         }
     };
@@ -87,23 +89,15 @@ class GoogleAuth extends React.Component {
         }
     };
 
-    /*fetchLogonText = () => {
-        if (!this.auth2) {
-            this.processLogon(true);
-        }
-        if (this.auth2 && this.auth2.isSignedIn.get()) {
-            const user = this.auth2.currentUser.get();
-            return 'Welcome ' + user.getBasicProfile().getName();
-        } else {
-            return '';
-        }
-    };*/
-
     render() {
+        debugger;
         return (
-            <div className="logon" onClick={() => this.processLogon(false)}>
-                <i className="fab fa-google fa-2x secondary-dark"></i>
-                <h5>{this.state.userName}</h5>
+            <div className="logon-wrap">
+                <i className="logon-icon fab fa-google fa-2x secondary-dark"></i>
+                <h5 className="logon-text">{this.state.userName}</h5>
+                <div className="logon-btn" onClick={() => this.processLogon(false)}>
+                    {this.state.isUserLoggedIn ? "Log-out" : "Log-in"}
+                </div>
             </div>
         );
     };

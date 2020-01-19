@@ -8,40 +8,6 @@
     align-items: center;
 }
 
-#navbar .container .logon {
-    display: flex;
-    align-items: center;
-    transition: all 0.5s ease-in-out;
-    border-radius: 0.5rem;
-    padding: 0.1rem 0.5rem;
-    backdrop-filter: opacity(0.2);
-}
-
-#navbar .container .logon:hover {
-    cursor: pointer;
-    transition: all 0.5s ease-in-out;
-    backdrop-filter: opacity(0.4);
-}
-
-#navbar .container .logon i,
-#navbar .container .logon h5 {
-    transition: all 0.5s ease-in-out;
-}
-
-#navbar .container .logon:hover i {
-    color: var(--secondary-light);
-    transition: all 0.5s ease-in-out;
-}
-
-#navbar .container .logon:hover h5 {
-    color: var(--primary-light);
-    transition: all 0.5s ease-in-out;
-}
-
-#navbar .container .logon i {
-    margin-right: 0.5rem;
-}
-
 #navbar .container .logo {
     display: flex;
     align-items: center;
@@ -49,6 +15,43 @@
 
 #navbar .container .logo i {
     padding-right: 0.5rem;
+}
+
+#navbar .container .logon-wrap {
+    display: flex;
+    align-items: center;
+    transition: all 0.5s ease-in-out;
+}
+
+#navbar .container .logon-wrap .logon-icon {
+    transition: all 0.5s ease-in-out;
+    color: var(--secondary-dark);
+    margin-right: 0.5rem;
+}
+
+#navbar .container .logon-wrap:hover .logon-icon {
+    transition: all 0.5s ease-in-out;
+    color: var(--secondary-light);
+}
+
+#navbar .container .logon-wrap .logon-text {
+    transition: all 0.5s ease-in-out;
+    margin-right: 0.5rem;
+}
+
+#navbar .container .logon-wrap:hover .logon-text {
+    transition: all 0.5s ease-in-out;
+    color: var(--secondary-dark);
+}
+
+#navbar .container .logon-wrap .logon-btn {
+    border-radius: 0.25rem;
+    backdrop-filter: opacity(0.2);
+    padding: 0.5rem 1rem;
+    cursor: pointer;
+}
+#navbar .container .logon-wrap .logon-btn:hover {
+    backdrop-filter: opacity(0.4);
 }
 
 #navbar .container .menu {
@@ -63,5 +66,5 @@
 
 #navbar .container .menu .item:hover {
     border-radius: 0.25rem;
-    background-color: var(--primary-light);
+    background-color: var(--primary-light)
 }
