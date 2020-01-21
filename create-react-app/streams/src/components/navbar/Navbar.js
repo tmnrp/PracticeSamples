@@ -1,7 +1,7 @@
 import './Navbar.css';
 import React from 'react';
 import { connect } from 'react-redux';
-import GoogleAuth from '../GoogleAuth';
+import GoogleAuth from '../utility/GoogleAuth';
 
 class Navbar extends React.Component {
     render() {
@@ -15,6 +15,11 @@ class Navbar extends React.Component {
                     <GoogleAuth />
                     <ul className="menu">
                         <li className="item"><span>Home</span></li>
+                        <li className="item">
+                            <span>
+                                <a href="/stream/create">Streams</a>
+                            </span>
+                        </li>
                         <li className="item"><span>About Us</span></li>
                         <li className="item"><span>Contact</span></li>
                     </ul>

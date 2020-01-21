@@ -1,0 +1,40 @@
+.section-wrap {
+    padding-top: 1rem;
+}
+
+.section-wrap .field-wrap {
+    display: flex;
+    flex-direction: column;
+    padding-top: 1rem;
+}
+
+.section-wrap .field-wrap .field-text {
+    padding: 0.25rem 0;
+    border-radius: 0.25rem;
+    border: 1;
+}
+
+.section-wrap .submit-wrap {
+    margin-top: 1rem;
+    text-align: center;
+}
+
+.section-wrap .submit-wrap {
+    margin-top: 1rem;
+    text-align: center;
+}
+
+.section-wrap .util-hlink {
+    text-decoration: none;
+    color: #fff;
+    background-color: black;
+    padding: 0.25rem 1rem;
+    border-radius: 0.25rem;
+    cursor: pointer;
+    transition: all 0.5s ease-in-out;
+}
+
+.section-wrap .util-hlink:hover {
+    transition: all 0.5s ease-in-out;
+    background-color: #37BDAE;
+}

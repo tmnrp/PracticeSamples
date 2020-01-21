@@ -1,6 +1,6 @@
 import React from 'react';
 import { connect } from 'react-redux';
-import { setLoggedIn, setLoggedOut } from '../actions';
+import { setLoggedIn, setLoggedOut } from '../../actions';
 
 class GoogleAuth extends React.Component {
     state = {
@@ -90,7 +90,6 @@ class GoogleAuth extends React.Component {
     };
 
     render() {
-        debugger;
         return (
             <div className="logon-wrap">
                 <i className="logon-icon fab fa-google fa-2x secondary-dark"></i>

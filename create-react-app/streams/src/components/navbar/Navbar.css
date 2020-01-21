@@ -68,3 +68,8 @@
     border-radius: 0.25rem;
     background-color: var(--primary-light)
 }
+
+#navbar .container .menu .item a {
+    color: #fff;
+    text-decoration: none;
+}
