@@ -4,9 +4,9 @@ class StreamEdit extends React.Component {
 
     render() {
         return (
-            <div>
+            <section className="section-edit">
                 <h1>Stream Edit</h1>
-            </div>
+            </section>
         );
     }
 }

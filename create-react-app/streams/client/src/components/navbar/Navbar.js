@@ -17,7 +17,7 @@ class Navbar extends React.Component {
                         <li className="item"><span>Home</span></li>
                         <li className="item">
                             <span>
-                                <a href="/stream/create">Streams</a>
+                                <a href="/stream/list">Streams</a>
                             </span>
                         </li>
                         <li className="item"><span>About Us</span></li>
