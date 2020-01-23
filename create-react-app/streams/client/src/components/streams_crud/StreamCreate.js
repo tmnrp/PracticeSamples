@@ -13,9 +13,15 @@ class StreamCreate extends React.Component {
     onSubmitClick = (e) => {
         console.log('title ->', this.state.title);
         console.log('description ->', this.state.description);
-        debugger;
-        stream.get('/streams').then((res) => {
-            console.log(res)
+        stream.get('/stream').then((res) => {
+            debugger;
+            /*stream.post('/streams', {
+                id: res.data.
+                title: this.state.title,
+                description: this.state.description
+            }).then((res) => {
+                console.log(res)
+            });*/
         });
     };
 
@@ -33,7 +39,7 @@ class StreamCreate extends React.Component {
 
     render() {
         return (
-            <section className="section-wrap">
+            <section id="stream-create" className="section-wrap">
                 <h1 className="section-title">Create Stream</h1>
                 <div className="field-wrap">
                     <label htmlFor="title" className="field-label">Title</label>

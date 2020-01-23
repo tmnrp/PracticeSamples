@@ -10,8 +10,8 @@ class App extends React.Component {
     render() {
         return (
             <div>
-                <Navbar />
                 <BrowserRouter >
+                    <Navbar />
                     <div>
                         <Route exact path="/stream/create" component={StreamCreate} />
                         <Route exact path="/stream/list" component={StreamList} />

@@ -2,6 +2,7 @@ import './Navbar.css';
 import React from 'react';
 import { connect } from 'react-redux';
 import GoogleAuth from '../utility/GoogleAuth';
+import { Link } from 'react-router-dom';
 
 class Navbar extends React.Component {
     render() {
@@ -17,7 +18,7 @@ class Navbar extends React.Component {
                         <li className="item"><span>Home</span></li>
                         <li className="item">
                             <span>
-                                <a href="/stream/list">Streams</a>
+                                <Link to="/stream/list">Streams</Link>
                             </span>
                         </li>
                         <li className="item"><span>About Us</span></li>
