@@ -90,3 +90,17 @@
     transition: 0.5s all ease-in-out;
     background-color: var(--secondary-dark);
 }
+
+#stream-view .view-container {
+    border-style: solid;
+    border-width: thin;
+    border-radius: 0.25rem;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+#stream-view .view-container .title {
+    padding: 1rem 2rem;
+    font-weight: bold;
+}

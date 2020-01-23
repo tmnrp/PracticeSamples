@@ -36,9 +36,7 @@ class StreamList extends React.Component {
 
     deleteStream = (e) => {
         const rowId = e.target.attributes.rowid.value;
-        axios.delete('/streams/' + rowId).then(() => {
-
-        });
+        axios.delete('/streams/' + rowId);
     };
 
     getList = () => {
@@ -50,8 +48,28 @@ class StreamList extends React.Component {
                         <hr />
                         <span><strong>Description: </strong>{stream.description}</span>
                     </div>
-                    <Link to="/stream/view" className="fa fa-eye fa-2x stream-crud" />
-                    <Link to="/stream/edit" className="fa fa-edit fa-2x stream-crud primary-light" />
+                    <Link
+                        to={{
+                            pathname: "/stream/view",
+                            state: {
+                                id: stream.id,
+                                title: stream.title,
+                                description: stream.description
+                            }
+                        }}
+                        className="fa fa-eye fa-2x stream-crud" lol="lolwa"
+                    />
+                    <Link
+                        to={{
+                            pathname: "/stream/create",
+                            state: {
+                                id: stream.id,
+                                title: stream.title,
+                                description: stream.description
+                            }
+                        }}
+                        className="fa fa-edit fa-2x stream-crud primary-light"
+                    />
                     <span
                         rowid={stream.id}
                         className="fa fa-trash-alt fa-2x stream-crud secondary-dark"

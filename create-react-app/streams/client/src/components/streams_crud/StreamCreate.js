@@ -6,25 +6,49 @@ import { Redirect } from 'react-router-dom';
 
 class StreamCreate extends React.Component {
 
+    componentDidMount = () => {
+        if (this.props.location.state) {
+            this.setState({
+                mode: 'edit',
+                streamid: this.props.location.state.id,
+                title: this.props.location.state.title,
+                description: this.props.location.state.description
+            });
+        }
+    };
+
     state = {
+        streamid: undefined,
         title: '',
         description: '',
-        toListView: false
+        toListView: false,
+        mode: 'create'
     };
 
     onSubmitClick = (e) => {
         console.log('title ->', this.state.title);
         console.log('description ->', this.state.description);
         stream.get('/streams').then((res) => {
-            stream.post('/streams', {
-                id: (res.data.length + 1),
-                title: this.state.title,
-                description: this.state.description
-            }).then((res) => {
-                this.setState({
-                    toListView: true
+            if (this.state.mode === 'edit') {
+                stream.put('/streams/' + this.state.streamid, {
+                    title: this.state.title,
+                    description: this.state.description
+                }).then((res) => {
+                    this.setState({
+                        toListView: true
+                    });
                 });
-            });
+            } else {
+                stream.post('/streams', {
+                    id: (res.data.length + 1),
+                    title: this.state.title,
+                    description: this.state.description
+                }).then((res) => {
+                    this.setState({
+                        toListView: true
+                    });
+                });
+            }
         });
     };
 
@@ -48,7 +72,7 @@ class StreamCreate extends React.Component {
         return (
             <section id="stream-create" className="section-wrap">
                 <div className="section-title-wrap">
-                    <h1 className="section-title">Create Stream</h1>
+                    <h1 className="section-title">{this.state.mode === 'edit' ? 'Edit' : 'Create'} Stream</h1>
                 </div>
                 <div className="field-container">
                     <div className="field-wrap">
@@ -78,7 +102,9 @@ class StreamCreate extends React.Component {
                         <span className="field-validation">{this.state.descriptionError}</span>
                     </div>
                     <div className="submit-wrap">
-                        <button className="submit-btn" onClick={(e) => this.onSubmitClick(e)}>Submit</button>
+                        <button className="submit-btn" onClick={(e) => this.onSubmitClick(e)}>
+                            {this.state.mode === 'edit' ? 'Save' : 'Submit'}
+                        </button>
                     </div>
                 </div>
             </section>
