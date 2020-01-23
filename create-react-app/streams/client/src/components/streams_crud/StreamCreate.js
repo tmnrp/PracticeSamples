@@ -28,6 +28,7 @@ class StreamCreate extends React.Component {
     onSubmitClick = (e) => {
         console.log('title ->', this.state.title);
         console.log('description ->', this.state.description);
+        debugger;
         stream.get('/streams').then((res) => {
             if (this.state.mode === 'edit') {
                 stream.put('/streams/' + this.state.streamid, {
