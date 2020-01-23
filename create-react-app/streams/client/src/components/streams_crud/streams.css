@@ -5,10 +5,9 @@
 .section-title-wrap {
     display: flex;
     align-items: center;
-}
-
-#stream-list .section-title-wrap {
-    padding-bottom: 1.5rem;
+    justify-content: center;
+    padding-left: 2rem;
+    padding-bottom: 1rem;
 }
 
 #stream-list .section-title-wrap .section-title {
@@ -37,15 +36,57 @@
     transition: 0.5s all ease-in-out;
 }
 
-#stream-list .card .view-details {
+#stream-list .card .stream-crud {
+    margin: 0 0.5rem;
     transition: 0.5s all ease-in-out;
+    cursor: pointer;
 }
-#stream-list .card .view-details:hover {
+
+#stream-list .card .stream-crud:hover {
     color: var(--primary-dark);
     transition: 0.3s all ease-in-out;
 }
 
-#stream-list .card .card-info{
+#stream-list .card .card-info {
     padding-right: 2rem;
     flex-grow: 1;
+}
+
+#stream-create .field-container .field-wrap {
+    display: flex;
+    flex-direction: column;
+    line-height: 1.5rem;
+    padding-bottom: 1rem;
+}
+
+.field-wrap .field-label {
+    font-weight: bold;
+}
+
+.field-wrap .field-text {
+    padding: 0.25rem 0;
+    border-radius: 0.25rem;
+    border-style: ridge;
+}
+
+.submit-wrap {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.submit-wrap .submit-btn {
+    border: none;
+    background-color: var(--primary-light);
+    padding: 0.5rem 2rem;
+    border-radius: 0.25rem;
+    transition: 0.5s all ease-in-out;
+    color: var(--light);
+    font-weight: bold;
+}
+
+.submit-wrap .submit-btn:hover {
+    transition: 0.5s all ease-in-out;
+    background-color: var(--secondary-dark);
 }
