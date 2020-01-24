@@ -1,83 +1,59 @@
 import './streams.css';
 import React from 'react';
-import axios from '../utility/apis';
-import { Link, Redirect } from 'react-router-dom';
+import { Link } from 'react-router-dom';
 
 class StreamList extends React.Component {
-
-    _isMounted = false;
-
-    state = {
-        streamList: []
-    };
-
-    componentDidMount = () => {
-        this._isMounted = true;
-        axios.get('/streams').then((res) => {
-            this.setState({
-                streamList: res.data
-            });
-        });
-    };
-
-    componentDidUpdate = () => {
-        axios.get('/streams').then((res) => {
-            if (this._isMounted) {
-                this.setState({
-                    streamList: res.data
-                });
-            }
-        });
-    };
-
-    componentWillUnmount = () => {
-        this._isMounted = false;
-    };
-
-    deleteStream = (e) => {
-        const rowId = e.target.attributes.rowid.value;
-        axios.delete('/streams/' + rowId);
-    };
-
-    getList = () => {
-        return this.state.streamList.map((stream) => {
-            return (
-                <div className="card" key={stream.id}>
-                    <div className="card-info">
-                        <span><strong>Title: </strong>{stream.title}</span>
-                        <hr />
-                        <span><strong>Description: </strong>{stream.description}</span>
+    getList = (params) => {
+        if (Object.keys(this.props.streams).length > 0) {
+            return this.props.streams.map((stream) => {
+                return (
+                    <div className="card" key={stream.id}>
+                        <div className="card-info">
+                            <span><strong>Title: </strong>{stream.title}</span>
+                            <hr />
+                            <span><strong>Description: </strong>{stream.description}</span>
+                        </div>
+                        <Link
+                            to={{
+                                pathname: "/stream/view",
+                                state: {
+                                    id: stream.id,
+                                    title: stream.title,
+                                    description: stream.description
+                                }
+                            }}
+                            className="fa fa-eye fa-2x stream-crud" lol="lolwa"
+                        />
+                        <Link
+                            to={{
+                                pathname: "/stream/create",
+                                state: {
+                                    mode: 'edit',
+                                    title: stream.title,
+                                    description: stream.description,
+                                    id: stream.id
+                                },
+                                updateStream: params.updateStream
+                            }}
+                            className="fa fa-edit fa-2x stream-crud primary-light"
+                        />
+                        <span
+                            rowid={stream.id}
+                            className="fa fa-trash-alt fa-2x stream-crud secondary-dark"
+                            onClick={
+                                () => this.props.deleteStream(stream.id)
+                            }
+                        />
                     </div>
-                    <Link
-                        to={{
-                            pathname: "/stream/view",
-                            state: {
-                                id: stream.id,
-                                title: stream.title,
-                                description: stream.description
-                            }
-                        }}
-                        className="fa fa-eye fa-2x stream-crud" lol="lolwa"
-                    />
-                    <Link
-                        to={{
-                            pathname: "/stream/create",
-                            state: {
-                                id: stream.id,
-                                title: stream.title,
-                                description: stream.description
-                            }
-                        }}
-                        className="fa fa-edit fa-2x stream-crud primary-light"
-                    />
-                    <span
-                        rowid={stream.id}
-                        className="fa fa-trash-alt fa-2x stream-crud secondary-dark"
-                        onClick={(e) => this.deleteStream(e)}
-                    />
+                );
+            });
+        } else {
+            return (
+                <div>
+                    Loading...
                 </div>
             );
-        });
+        }
     };
 
     render() {
@@ -85,9 +61,23 @@ class StreamList extends React.Component {
             <section id="stream-list" className="section-wrap">
                 <div className="section-title-wrap">
                     <h1 className="section-title">Create List</h1>
-                    <Link to="/stream/create" className="fa fa-plus fa-2x stream-add" />
+                    <Link
+                        to={{
+                            pathname: "/stream/create",
+                            state: {
+                                mode: 'create'
+                            },
+                            createStream: this.props.createStream,
+                            updateStream: this.props.updateStream
+                        }}
+                        className="fa fa-plus fa-2x stream-add"
+                    />
                 </div>
-                <this.getList />
+                <this.getList
+                    streams={this.props.streams}
+                    updateStream={this.props.updateStream}
+                    id={this.props.streams.id}
+                />
             </section>
         );
     }

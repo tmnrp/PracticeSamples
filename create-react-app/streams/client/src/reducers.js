@@ -9,6 +9,14 @@ const isUserLoggedinReducer = (isUserLoggedin = false, action) => {
     return isUserLoggedin;
 };
 
+const streamsReducer = (streams = {}, action) => {
+    if (action.type === 'GET_ALL_STREAMS') {
+        return action.payload;
+    }
+    return streams;
+};
+
 export default combineReducers({
-    isUserLoggedIn: isUserLoggedinReducer
+    isUserLoggedIn: isUserLoggedinReducer,
+    streams: streamsReducer
 });

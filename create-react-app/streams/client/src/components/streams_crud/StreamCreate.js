@@ -6,51 +6,14 @@ import { Redirect } from 'react-router-dom';
 
 class StreamCreate extends React.Component {
 
-    componentDidMount = () => {
-        if (this.props.location.state) {
-            this.setState({
-                mode: 'edit',
-                streamid: this.props.location.state.id,
-                title: this.props.location.state.title,
-                description: this.props.location.state.description
-            });
-        }
-    };
-
     state = {
-        streamid: undefined,
         title: '',
         description: '',
-        toListView: false,
-        mode: 'create'
+        mode: ''
     };
 
-    onSubmitClick = (e) => {
-        console.log('title ->', this.state.title);
-        console.log('description ->', this.state.description);
-        debugger;
-        stream.get('/streams').then((res) => {
-            if (this.state.mode === 'edit') {
-                stream.put('/streams/' + this.state.streamid, {
-                    title: this.state.title,
-                    description: this.state.description
-                }).then((res) => {
-                    this.setState({
-                        toListView: true
-                    });
-                });
-            } else {
-                stream.post('/streams', {
-                    id: (res.data.length + 1),
-                    title: this.state.title,
-                    description: this.state.description
-                }).then((res) => {
-                    this.setState({
-                        toListView: true
-                    });
-                });
-            }
-        });
+    componentDidMount = () => {
+        this.setState(this.props.location.state);
     };
 
     onTitleChange = (e) => {
@@ -66,10 +29,8 @@ class StreamCreate extends React.Component {
     };
 
     render() {
-        if (this.state.toListView === true) {
-            return <Redirect to='/stream/list' />
-        }
-
+        debugger;
+        let onBtnClick = this.props.location.state.mode === 'edit' ? this.props.location.updateStream : this.props.location.createStream;
         return (
             <section id="stream-create" className="section-wrap">
                 <div className="section-title-wrap">
@@ -103,7 +64,7 @@ class StreamCreate extends React.Component {
                         <span className="field-validation">{this.state.descriptionError}</span>
                     </div>
                     <div className="submit-wrap">
-                        <button className="submit-btn" onClick={(e) => this.onSubmitClick(e)}>
+                        <button className="submit-btn" onClick={() => onBtnClick(this.state)}>
                             {this.state.mode === 'edit' ? 'Save' : 'Submit'}
                         </button>
                     </div>
