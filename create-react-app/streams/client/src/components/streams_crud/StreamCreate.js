@@ -1,19 +1,15 @@
-import '../../index.css';
 import './streams.css';
 import React from 'react';
-import stream from '../utility/apis';
-import { Redirect } from 'react-router-dom';
+import { connect } from 'react-redux';
+import { createStreamHandler, updateStreamHandler } from '../../actions';
 
 class StreamCreate extends React.Component {
 
+    mode;
+    onBtnClick;
     state = {
         title: '',
-        description: '',
-        mode: ''
-    };
-
-    componentDidMount = () => {
-        this.setState(this.props.location.state);
+        description: ''
     };
 
     onTitleChange = (e) => {
@@ -28,13 +24,24 @@ class StreamCreate extends React.Component {
         });
     };
 
+    componentDidMount = () => {
+        if (this.props.location) {
+            this.mode = this.props.location.state.mode;
+            this.setState({
+                title: this.props.location.state.title,
+                description: this.props.location.state.description
+            });
+        } else {
+            this.mode = this.props.mode;
+        }
+        this.onBtnClick = this.mode === 'create' ? this.props.createStreamHandler : this.props.updateStreamHandler;
+    };
+
     render() {
-        debugger;
-        let onBtnClick = this.props.location.state.mode === 'edit' ? this.props.location.updateStream : this.props.location.createStream;
         return (
             <section id="stream-create" className="section-wrap">
                 <div className="section-title-wrap">
-                    <h1 className="section-title">{this.state.mode === 'edit' ? 'Edit' : 'Create'} Stream</h1>
+                    <h1 className="section-title">{this.mode === 'edit' ? 'Edit' : 'Create'} Stream</h1>
                 </div>
                 <div className="field-container">
                     <div className="field-wrap">
@@ -64,8 +71,12 @@ class StreamCreate extends React.Component {
                         <span className="field-validation">{this.state.descriptionError}</span>
                     </div>
                     <div className="submit-wrap">
-                        <button className="submit-btn" onClick={() => onBtnClick(this.state)}>
-                            {this.state.mode === 'edit' ? 'Save' : 'Submit'}
+                        <button className="submit-btn" onClick={() => this.onBtnClick({
+                            ...this.state,
+                            userId: this.props.usersInfo.userId,
+                            id: this.props.location ? this.props.location.state.id : null
+                        }, this.props.history)}>
+                            {this.mode === 'edit' ? 'Save' : 'Submit'}
                         </button>
                     </div>
                 </div>
@@ -74,4 +85,15 @@ class StreamCreate extends React.Component {
     }
 }
 
-export default StreamCreate;
+const mapStateToProps = (state) => {
+    return state;
+};
+
+const mapActionToProps = () => {
+    return {
+        createStreamHandler: createStreamHandler,
+        updateStreamHandler: updateStreamHandler
+    };
+};
+
+export default connect(mapStateToProps, mapActionToProps())(StreamCreate);

@@ -1,12 +1,12 @@
 import React from 'react';
 import { connect } from 'react-redux';
-import { setLoggedIn, setLoggedOut } from '../../actions';
+import { setLoggedIn, setLoggedOut, setUserName, setUserId } from '../../actions';
 
 class GoogleAuth extends React.Component {
-    state = {
-        userName: 'Sign in with Google'
-    };
     auth2 = null;
+    state = {
+        logonText: ''
+    };
 
     componentDidMount = () => {
         this.processLogon(true);
@@ -27,26 +27,35 @@ class GoogleAuth extends React.Component {
         }
     };
 
-    updateUserName = () => {
-        if (this.auth2 && this.auth2.isSignedIn.get()) {
-            const user = this.auth2.currentUser.get();
-            this.setState({
-                userName: 'Welcome ' + user.getBasicProfile().getName(),
-                isUserLoggedIn: true
-            });
-        } else {
-            this.setState({
-                userName: 'Sign in with google',
-                isUserLoggedIn: false
-            })
+    shouldByPassLogon = (byPass) => {
+        this.auth2 = window.gapi.auth2.getAuthInstance();
+        this.updateUserDetails();
+        if (!byPass) {
+            this.doProcessLogon();
         }
     };
 
-    shouldByPassLogon = (byPass) => {
-        this.auth2 = window.gapi.auth2.getAuthInstance();
-        this.updateUserName();
-        if (!byPass) {
-            this.doProcessLogon();
+    updateUserDetails = (user) => {
+        if (this.auth2) {
+            const isUserLoggedIn = this.auth2.isSignedIn.get();
+            if (isUserLoggedIn) {
+                if (!user) {
+                    user = this.auth2.currentUser.get();
+                }
+                this.props.setLoggedIn();
+                this.props.setUserId(user.getId());
+                this.props.setUserName(user.getBasicProfile().getName());
+                this.setState({
+                    logonText: 'Welcome : '
+                });
+            } else {
+                this.props.setLoggedOut();
+                this.props.setUserId();
+                this.props.setUserName();
+                this.setState({
+                    logonText: 'Sign in with Google'
+                });
+            }
         }
     };
 
@@ -55,20 +64,18 @@ class GoogleAuth extends React.Component {
             this.processLogon();
         }
 
-        this.auth2 = window.gapi.auth2.getAuthInstance();
-        if (!this.auth2.isSignedIn.get()) {
+        if (!this.props.usersInfo.isUserLoggedIn) {
             this.auth2.signIn().then(
                 // success
                 (googleUser) => {
                     // update redux store
-                    this.props.setLoggedIn();
-                    this.updateUserName();
+                    this.updateUserDetails(googleUser);
                 },
 
                 // failure
                 (error) => {
                     // notify user
-                    alert('failed', error);
+                    console.log('failed', error);
                 }
             );
         } else {
@@ -76,14 +83,13 @@ class GoogleAuth extends React.Component {
                 // success
                 () => {
                     /// update redux store
-                    this.props.setLoggedOut();
-                    this.updateUserName();
+                    this.updateUserDetails();
                 },
 
                 // failure
                 (error) => {
                     // notify user
-                    alert('failed', error);
+                    console.log('failed', error);
                 }
             );
         }
@@ -93,9 +99,9 @@ class GoogleAuth extends React.Component {
         return (
             <div className="logon-wrap">
                 <i className="logon-icon fab fa-google fa-2x secondary-dark"></i>
-                <h5 className="logon-text">{this.state.userName}</h5>
+                <h5 className="logon-text">{this.state.logonText + (this.props.usersInfo.userName || '')}</h5>
                 <div className="logon-btn" onClick={() => this.processLogon(false)}>
-                    {this.state.isUserLoggedIn ? "Log-out" : "Log-in"}
+                    {this.props.usersInfo.isUserLoggedIn ? "Log-out" : "Log-in"}
                 </div>
             </div>
         );
@@ -109,7 +115,9 @@ const mapStateToProps = (state) => {
 const mapActionToProps = () => {
     return {
         setLoggedIn: setLoggedIn,
-        setLoggedOut: setLoggedOut
+        setLoggedOut: setLoggedOut,
+        setUserName: setUserName,
+        setUserId: setUserId
     };
 };
 

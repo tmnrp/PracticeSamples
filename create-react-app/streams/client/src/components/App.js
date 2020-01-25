@@ -1,51 +1,44 @@
+import '../index.css';
 import React from 'react';
 import Navbar from './navbar/Navbar';
-import { connect } from 'react-redux';
 import { Router, Route } from 'react-router-dom';
-import { createBrowserHistory } from "history";
+import history from './utility/history';
 import StreamCreate from './streams_crud/StreamCreate';
-import StreamEdit from './streams_crud/StreamEdit';
 import StreamList from './streams_crud/StreamList';
 import StreamView from './streams_crud/StreamView';
-import { getAllStreamsHandler, deleteStreamHandler, createStreamHandler, updateStreamHandler } from '../actions';
-
-const history = createBrowserHistory();
 
 class App extends React.Component {
-    componentDidMount = () => {
-        this.props.initAllStreams();
-    };
-
     render() {
         return (
             <div>
                 <Router history={history}>
                     <Navbar />
                     <div>
-                        <Route exact path="/stream/create" component={StreamCreate} />
                         <Route
                             exact
                             path="/stream/list"
-                            component={() =>
-                                <StreamList
-                                    streams={this.props.streams}
+                            component={StreamList}
+                        />
+                        <Route
+                            exact
+                            path="/stream/view"
+                            component={StreamView}
+                        />
+                        <Route
+                            exact
+                            path="/stream/create"
+                            component={
+                                () => <StreamCreate
                                     mode='create'
-                                    deleteStream={this.props.deleteStream}
-                                    createStream={this.props.createStream}
-                                    updateStream={this.props.updateStream}
+                                    history={history}
                                 />
                             }
                         />
                         <Route
                             exact
                             path="/stream/edit"
-                            component={() =>
-                                <StreamEdit
-                                    mode='edit'
-                                />
-                            }
+                            component={StreamCreate}
                         />
-                        <Route exact path="/stream/view" component={StreamView} />
                     </div>
                 </Router>
             </div>
@@ -53,17 +46,4 @@ class App extends React.Component {
     };
 }
 
-const mapStateToProps = (state) => {
-    return state;
-};
-
-const mapActionToProps = () => {
-    return {
-        initAllStreams: getAllStreamsHandler,
-        deleteStream: deleteStreamHandler,
-        createStream: createStreamHandler,
-        updateStream: updateStreamHandler
-    };
-}
-
-export default connect(mapStateToProps, mapActionToProps())(App);
+export default App;

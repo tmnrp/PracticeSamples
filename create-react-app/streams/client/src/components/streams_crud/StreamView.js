@@ -3,7 +3,6 @@ import React from 'react';
 class StreamView extends React.Component {
 
     render() {
-        debugger;
         return (
             <section id="stream-view" className="section-wrap">
                 <div className="section-title-wrap">

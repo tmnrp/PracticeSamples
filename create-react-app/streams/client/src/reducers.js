@@ -1,15 +1,21 @@
 import { combineReducers } from 'redux';
 
-const isUserLoggedinReducer = (isUserLoggedin = false, action) => {
-    if (action.type === 'USER_LOGGED_IN') {
-        return true;
-    } else if (action.type === 'USER_LOGGED_OUT') {
-        return false;
+const usersInfoReducer = (usersInfo = {}, action) => {
+    switch (action.type) {
+        case 'SET_LOGGED_IN':
+            return { ...usersInfo, isUserLoggedIn: true };
+        case 'SET_LOGGED_OUT':
+            return { ...usersInfo, isUserLoggedIn: false };
+        case 'SET_USER_NAME':
+            return { ...usersInfo, userName: action.payload };
+        case 'SET_USER_ID':
+            return { ...usersInfo, userId: action.payload };
+        default:
+            return { ...usersInfo }
     }
-    return isUserLoggedin;
 };
 
-const streamsReducer = (streams = {}, action) => {
+const getAllStreamsReducer = (streams = {}, action) => {
     if (action.type === 'GET_ALL_STREAMS') {
         return action.payload;
     }
@@ -17,6 +23,6 @@ const streamsReducer = (streams = {}, action) => {
 };
 
 export default combineReducers({
-    isUserLoggedIn: isUserLoggedinReducer,
-    streams: streamsReducer
+    usersInfo: usersInfoReducer,
+    streams: getAllStreamsReducer
 });

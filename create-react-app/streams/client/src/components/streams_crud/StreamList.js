@@ -1,10 +1,25 @@
 import './streams.css';
 import React from 'react';
 import { Link } from 'react-router-dom';
+import { connect } from 'react-redux';
+import { getAllStreamsHandler, deleteStreamHandler } from '../../actions';
 
 class StreamList extends React.Component {
-    getList = (params) => {
-        if (Object.keys(this.props.streams).length > 0) {
+    count = 0;
+
+    componentDidMount = () => {
+        this.props.getAllStreamsHandler();
+    };
+
+    componentDidUpdate = () => {
+        if (this.count > 0) {
+            this.count = 0;
+            this.props.getAllStreamsHandler();
+        }
+    };
+
+    getList = () => {
+        if (this.props.streams.length > 0) {
             return this.props.streams.map((stream) => {
                 return (
                     <div className="card" key={stream.id}>
@@ -15,35 +30,44 @@ class StreamList extends React.Component {
                         </div>
                         <Link
                             to={{
-                                pathname: "/stream/view",
+                                pathname: `/stream/view`,
                                 state: {
-                                    id: stream.id,
-                                    title: stream.title,
-                                    description: stream.description
-                                }
-                            }}
-                            className="fa fa-eye fa-2x stream-crud" lol="lolwa"
-                        />
-                        <Link
-                            to={{
-                                pathname: "/stream/create",
-                                state: {
-                                    mode: 'edit',
                                     title: stream.title,
                                     description: stream.description,
-                                    id: stream.id
-                                },
-                                updateStream: params.updateStream
+                                    userId: stream.userId
+                                }
                             }}
-                            className="fa fa-edit fa-2x stream-crud primary-light"
+                            className="fa fa-eye fa-2x stream-crud"
                         />
-                        <span
-                            rowid={stream.id}
-                            className="fa fa-trash-alt fa-2x stream-crud secondary-dark"
-                            onClick={
-                                () => this.props.deleteStream(stream.id)
-                            }
-                        />
+                        {
+                            (!(stream.userId === '') && this.props.usersInfo.userId === stream.userId) ?
+                                <>
+                                    <Link
+                                        to={{
+                                            pathname: "/stream/edit",
+                                            state: {
+                                                mode: 'edit',
+                                                title: stream.title,
+                                                description: stream.description,
+                                                id: stream.id
+                                            }
+                                        }}
+                                        className="fa fa-edit fa-2x stream-crud primary-light"
+                                    />
+                                    <span
+                                        rowid={stream.id}
+                                        className="fa fa-trash-alt fa-2x stream-crud secondary-dark"
+                                        onClick={
+                                            () => {
+                                                this.count = 1;
+                                                this.props.deleteStreamHandler(stream.id, this.props.history)
+                                            }
+                                        }
+                                    />
+                                </>
+                                :
+                                <></>
+                        }
                     </div>
                 );
             });
@@ -64,23 +88,26 @@ class StreamList extends React.Component {
                     <Link
                         to={{
                             pathname: "/stream/create",
-                            state: {
-                                mode: 'create'
-                            },
-                            createStream: this.props.createStream,
-                            updateStream: this.props.updateStream
+                            usersInfo: this.props.usersInfo
                         }}
                         className="fa fa-plus fa-2x stream-add"
                     />
                 </div>
-                <this.getList
-                    streams={this.props.streams}
-                    updateStream={this.props.updateStream}
-                    id={this.props.streams.id}
-                />
+                <this.getList />
             </section>
         );
     }
 }
 
-export default StreamList;
+const mapStateToProps = (state) => {
+    return state;
+};
+
+const mapActionToProps = () => {
+    return {
+        getAllStreamsHandler: getAllStreamsHandler,
+        deleteStreamHandler: deleteStreamHandler
+    };
+};
+
+export default connect(mapStateToProps, mapActionToProps())(StreamList);

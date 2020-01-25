@@ -15,7 +15,9 @@ class Navbar extends React.Component {
                     </div>
                     <GoogleAuth />
                     <ul className="menu">
-                        <li className="item"><Link to="/">Home</Link></li>
+                        <li className="item">
+                            <Link to="/">Home</Link>
+                        </li>
                         <li className="item">
                             <span>
                                 <Link to="/stream/list">Streams</Link>

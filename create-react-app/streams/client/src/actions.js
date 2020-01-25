@@ -2,13 +2,27 @@ import streamAxios from './components/utility/apis';
 
 export const setLoggedIn = () => {
     return {
-        type: 'USER_LOGGED_IN'
+        type: 'SET_LOGGED_IN'
     };
 };
 
 export const setLoggedOut = () => {
     return {
-        type: 'USER_LOGGED_OUT'
+        type: 'SET_LOGGED_OUT'
+    };
+};
+
+export const setUserName = (userName) => {
+    return {
+        type: 'SET_USER_NAME',
+        payload: userName || ''
+    };
+};
+
+export const setUserId = (userid) => {
+    return {
+        type: 'SET_USER_ID',
+        payload: userid || ''
     };
 };
 
@@ -23,41 +37,45 @@ export const getAllStreamsHandler = () => {
     };
 };
 
-export const deleteStreamHandler = (id) => {
+export const deleteStreamHandler = (id, history) => {
     return (dispatch) => {
         streamAxios.delete(`/streams/${id}`).then((res) => {
             dispatch({
                 type: 'DELETE_STREAM'
             });
+            history.push('/stream/list');
         });
     };
 };
 
-export const createStreamHandler = (state) => {
-    const { id, title, description } = state;
+export const createStreamHandler = (state, history) => {
+    const { title, description, userId } = state;
     return (dispatch) => {
         streamAxios.post(`/streams`, {
-            id: id,
             title: title,
-            description: description
+            description: description,
+            userId: userId
         }).then((res) => {
             dispatch({
                 type: 'CREATE_STREAM'
             });
+            history.push('/stream/list');
         });
     };
 };
 
-export const updateStreamHandler = (state) => {
-    const { id, title, description } = state;
+export const updateStreamHandler = (state, history) => {
+    const { id, title, description, userId } = state;
     return (dispatch) => {
         streamAxios.put(`/streams/${id}`, {
             title: title,
-            description: description
+            description: description,
+            userId: userId
         }).then((res) => {
             dispatch({
                 type: 'UPDATE_STREAM'
             });
+            history.push('/stream/list');
         });
     };
 };
