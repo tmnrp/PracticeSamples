@@ -2,7 +2,7 @@ import './streams.css';
 import React from 'react';
 import { Link } from 'react-router-dom';
 import { connect } from 'react-redux';
-import { getAllStreamsHandler, deleteStreamHandler, displayModalHandler } from '../../actions';
+import { getAllStreamsHandler, deleteStreamHandler, displayModalHandler, setModalConfigHandler } from '../../actions';
 
 class StreamList extends React.Component {
     count = 0;
@@ -62,7 +62,16 @@ class StreamList extends React.Component {
                                         className="fa fa-trash-alt fa-2x stream-crud secondary-dark"
                                         onClick={() => {
                                             console.log('Clicked....');
-                                            return this.displayModal(true);
+                                            this.displayModal(true);
+                                            this.props.setModalConfigHandler({
+                                                title: 'Delete confirmation',
+                                                description: `Are you sure you want to delete ${stream.title} ?`,
+                                                onYesClickHandler: () => {
+                                                    this.count = 1;
+                                                    this.props.deleteStreamHandler(stream.id, this.props.history);
+                                                    this.displayModal(false);
+                                                }
+                                            });
                                         }}
                                     />
                                 </>
@@ -108,7 +117,8 @@ const mapActionToProps = () => {
     return {
         getAllStreamsHandler: getAllStreamsHandler,
         deleteStreamHandler: deleteStreamHandler,
-        displayModalHandler: displayModalHandler
+        displayModalHandler: displayModalHandler,
+        setModalConfigHandler: setModalConfigHandler
     };
 };
 

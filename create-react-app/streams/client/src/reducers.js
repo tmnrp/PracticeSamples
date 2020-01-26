@@ -29,8 +29,16 @@ const displayModalReducer = (shouldDisplayModal = false, action) => {
     return shouldDisplayModal;
 };
 
+const modalCofigReducer = (modalConfig = { title: '', description: '', onYesClickHandler: null }, action) => {
+    if (action.type === 'SET_MODAL_CONFIG') {
+        return action.payload;
+    }
+    return modalConfig;
+}
+
 export default combineReducers({
     usersInfo: usersInfoReducer,
     streams: getAllStreamsReducer,
-    displayModal: displayModalReducer
+    displayModal: displayModalReducer,
+    modalCofig: modalCofigReducer
 });

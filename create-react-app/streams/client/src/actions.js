@@ -86,3 +86,10 @@ export const displayModalHandler = (shouldDisplayModal) => {
         payload: shouldDisplayModal
     };
 };
+
+export const setModalConfigHandler = (modalConfig) => {
+    return {
+        type: 'SET_MODAL_CONFIG',
+        payload: modalConfig
+    };
+};

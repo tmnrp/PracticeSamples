@@ -6,22 +6,25 @@ import { displayModalHandler } from '../../actions';
 
 class Modal extends React.Component {
     render() {
+        const { title, description, onYesClickHandler } = this.props.modalCofig;
         return (this.props.displayModal) ? ReactDOM.createPortal(
             <div
                 className="modal"
                 onClick={() => this.props.displayModalHandler(false)}
             >
                 <div className="modal-container" onClick={(e) => { e.stopPropagation() }}>
-                    <div className="modal-title">Title</div>
+                    <div className="modal-title">{title}</div>
                     <hr className="modal-hr" />
                     <div className="modal-body">
                         <div className="modal-content">
-                            Lorem ipsum dolor sit amet consectetur adipisicing elit. Necessitatibus alias corporis corrupti! Delectus neque sint magni ut excepturi placeat quos.
+                            {description}
                         </div>
                     </div>
                     <hr className="modal-hr" />
                     <div className="modal-footer">
-                        <button>Yes</button>
+                        <button onClick={
+                            (e) => onYesClickHandler(e)
+                        }>Yes</button>
                         <button onClick={() => this.props.displayModalHandler(false)}>No</button>
                     </div>
                 </div>
@@ -33,7 +36,8 @@ class Modal extends React.Component {
 
 const mapStateToProps = (state) => {
     return {
-        displayModal: state.displayModal
+        displayModal: state.displayModal,
+        modalCofig: state.modalCofig
     };
 };
 
