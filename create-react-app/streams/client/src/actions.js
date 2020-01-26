@@ -79,3 +79,10 @@ export const updateStreamHandler = (state, history) => {
         });
     };
 };
+
+export const displayModalHandler = (shouldDisplayModal) => {
+    return {
+        type: 'SHOULD_DISPLAY_MODAL',
+        payload: shouldDisplayModal
+    };
+};

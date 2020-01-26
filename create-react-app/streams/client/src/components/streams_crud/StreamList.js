@@ -2,7 +2,7 @@ import './streams.css';
 import React from 'react';
 import { Link } from 'react-router-dom';
 import { connect } from 'react-redux';
-import { getAllStreamsHandler, deleteStreamHandler } from '../../actions';
+import { getAllStreamsHandler, deleteStreamHandler, displayModalHandler } from '../../actions';
 
 class StreamList extends React.Component {
     count = 0;
@@ -16,6 +16,10 @@ class StreamList extends React.Component {
             this.count = 0;
             this.props.getAllStreamsHandler();
         }
+    };
+
+    displayModal = (shouldDisplayModal) => {
+        this.props.displayModalHandler(shouldDisplayModal);
     };
 
     getList = () => {
@@ -55,14 +59,11 @@ class StreamList extends React.Component {
                                         className="fa fa-edit fa-2x stream-crud primary-light"
                                     />
                                     <span
-                                        rowid={stream.id}
                                         className="fa fa-trash-alt fa-2x stream-crud secondary-dark"
-                                        onClick={
-                                            () => {
-                                                this.count = 1;
-                                                this.props.deleteStreamHandler(stream.id, this.props.history)
-                                            }
-                                        }
+                                        onClick={() => {
+                                            console.log('Clicked....');
+                                            return this.displayModal(true);
+                                        }}
                                     />
                                 </>
                                 :
@@ -106,7 +107,8 @@ const mapStateToProps = (state) => {
 const mapActionToProps = () => {
     return {
         getAllStreamsHandler: getAllStreamsHandler,
-        deleteStreamHandler: deleteStreamHandler
+        deleteStreamHandler: deleteStreamHandler,
+        displayModalHandler: displayModalHandler
     };
 };
 

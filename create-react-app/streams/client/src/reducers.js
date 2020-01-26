@@ -22,7 +22,15 @@ const getAllStreamsReducer = (streams = {}, action) => {
     return streams;
 };
 
+const displayModalReducer = (shouldDisplayModal = false, action) => {
+    if (action.type === 'SHOULD_DISPLAY_MODAL') {
+        return action.payload;
+    }
+    return shouldDisplayModal;
+};
+
 export default combineReducers({
     usersInfo: usersInfoReducer,
-    streams: getAllStreamsReducer
+    streams: getAllStreamsReducer,
+    displayModal: displayModalReducer
 });
